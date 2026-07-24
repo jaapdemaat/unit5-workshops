@@ -221,6 +221,24 @@
     padding: 7px 14px;
   }
 
+  /* ---------- Roadmap ---------- */
+  .roadmap{ display:flex; flex-direction:column; }
+  .roadmap-item{
+    display:flex;
+    align-items:center;
+    gap: 16px;
+    padding: 12px 4px;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+  }
+  .roadmap-item:first-child{ border-top: none; }
+  .roadmap-item .wk{ flex: 0 0 auto; width: 60px; font-weight: 700; color: var(--purple-deep); font-size: 0.88rem; }
+  .roadmap-item .rtitle{ flex: 1 1 auto; font-weight: 600; color: var(--ink); }
+  .roadmap-item .chip{ flex: 0 0 auto; padding: 4px 12px; font-size: 0.76rem; }
+  a.roadmap-item .rtitle{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); }
+  a.roadmap-item:hover .rtitle{ color: var(--purple-deep); }
+
   /* ---------- Callout (facilitator note) ---------- */
   .callout{
     border-left: 3px solid var(--purple);
@@ -360,6 +378,7 @@
     <nav class="toc">
       <ul>
         <li><a href="#overview">Overview</a></li>
+        <li><a href="#programme">Full Programme <span class="count">(11)</span></a></li>
         <li><a href="#learning-outcomes">Learning Outcomes <span class="count">(3)</span></a></li>
         <li>Logistics
           <ul>
@@ -406,14 +425,25 @@
             <div class="date">9 October 2025 · 10:00–13:00</div>
           </div>
         </a>
-        <div class="week-card tbc">
-          <div class="visual"><span class="wk">W3</span></div>
-          <div class="body">
-            <div class="title">Title TBC</div>
-            <div class="tags"><span>Connecting</span></div>
-            <div class="date">16 October 2025 · following Laura Knight's workshop</div>
-          </div>
-        </div>
+      </div>
+    </section>
+
+    <!-- FULL PROGRAMME -->
+    <section id="programme">
+      <h2 class="section-title">Full Programme — 11 Weeks</h2>
+      <p>The complete arc of Unit 5, grouped by pedagogical phase. Weeks 1–2 are detailed in full below; later weeks will be expanded into full facilitator notes as they're finalised.</p>
+      <div class="roadmap">
+        <a class="roadmap-item" href="#week-1"><span class="wk">Week 1</span><span class="rtitle">Expanding Research</span><span class="chip">Gathering</span></a>
+        <a class="roadmap-item" href="#week-2"><span class="wk">Week 2</span><span class="rtitle">Questioning Your Sources</span><span class="chip">Gathering</span></a>
+        <div class="roadmap-item"><span class="wk">Week 3</span><span class="rtitle">Whose Voices, Whose Stories?</span><span class="chip">Gathering</span></div>
+        <div class="roadmap-item"><span class="wk">Week 4</span><span class="rtitle">Your Material as Research</span><span class="chip">Experimenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 5</span><span class="rtitle">Making Generates Meaning</span><span class="chip">Experimenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 6</span><span class="rtitle">Structures (The Bridge)</span><span class="chip">Connecting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 7</span><span class="rtitle">Frameworks</span><span class="chip">Documenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 8</span><span class="rtitle">Peer Review (Midpoint Feedback)</span><span class="chip">Documenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 9</span><span class="rtitle">Individual Tutorials</span><span class="chip">Finalising</span></div>
+        <div class="roadmap-item"><span class="wk">Week 10</span><span class="rtitle">Individual Tutorials (continued)</span><span class="chip">Finalising</span></div>
+        <div class="roadmap-item"><span class="wk">Week 11</span><span class="rtitle">Accessibility &amp; Publishing as Critical Practice</span><span class="chip">Finalising</span></div>
       </div>
     </section>
 
@@ -442,12 +472,13 @@
 
       <h3>Five pedagogical phases</h3>
       <ul class="plain-list">
-        <li><strong>Gathering</strong> (Weeks 1–3): Finding, questioning, and mapping sources</li>
-        <li><strong>Experimenting</strong> (Weeks 4–5): Material thinking and making as research</li>
-        <li><strong>Connecting</strong> (Week 6): The bridge — positioning their own practice</li>
-        <li><strong>Documenting</strong> (Weeks 7–8): Frameworks and peer feedback</li>
-        <li><strong>Finalising</strong> (Weeks 9–11): Refinement, accessibility, and publication</li>
+        <li><strong>Gathering</strong> (Weeks 1–3): Finding, questioning, and mapping sources — <em>Expanding Research, Questioning Your Sources, Whose Voices, Whose Stories?</em></li>
+        <li><strong>Experimenting</strong> (Weeks 4–5): Material thinking and making as research — <em>Your Material as Research, Making Generates Meaning</em></li>
+        <li><strong>Connecting</strong> (Week 6): The bridge — positioning their own practice — <em>Structures (The Bridge)</em></li>
+        <li><strong>Documenting</strong> (Weeks 7–8): Frameworks and peer feedback — <em>Frameworks, Peer Review (Midpoint Feedback)</em></li>
+        <li><strong>Finalising</strong> (Weeks 9–11): Refinement, accessibility, and publication — <em>Individual Tutorials, Individual Tutorials (continued), Accessibility &amp; Publishing as Critical Practice</em></li>
       </ul>
+      <p><a href="#programme">See the full 11-week programme →</a></p>
       <p><em>Note: Assessment is holistic and summative, taking place at the end of the unit. Students receive formative feedback throughout from tutors and peers.</em></p>
     </section>
 
@@ -500,11 +531,11 @@
     <section id="tutor-groupings">
       <h2 class="section-title">Tutor Groupings</h2>
       <div class="pair-grid">
-        <div class="pair"><div class="code">I&amp;S</div><div class="names">Amrit &amp; Kira</div></div>
-        <div class="pair"><div class="code">T&amp;M</div><div class="names">Mike &amp; Rachel</div></div>
-        <div class="pair"><div class="code">S&amp;I</div><div class="names">Sakis &amp; Amandine</div></div>
-        <div class="pair"><div class="code">E&amp;E</div><div class="names">Odira &amp; Andrea</div></div>
-        <div class="pair"><div class="code">N&amp;V</div><div class="names">Anoushka &amp; Jessica</div></div>
+        <div class="pair"><div class="code">F204</div><div class="names">Amrit &amp; Kira</div></div>
+        <div class="pair"><div class="code">K205</div><div class="names">Mike &amp; Rachel</div></div>
+        <div class="pair"><div class="code">K203</div><div class="names">Sakis &amp; Amandine</div></div>
+        <div class="pair"><div class="code">K204</div><div class="names">Odira &amp; Andrea</div></div>
+        <div class="pair"><div class="code">K202</div><div class="names">Anoushka &amp; Jessica</div></div>
       </div>
 
       <h3 style="margin-top:28px;">Context</h3>
@@ -804,7 +835,7 @@
 
       <div class="next-week">
         <span class="label">Next week</span>
-        <p>Week 3 · 16 Oct · Title and content TBC — following Laura Knight's workshop and introduction to Community resource list.</p>
+        <p>Week 3 · 16 Oct · Whose Voices, Whose Stories? — following Laura Knight's workshop and introduction to Community resource list.</p>
       </div>
     </section>
 
