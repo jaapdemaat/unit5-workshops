@@ -265,28 +265,6 @@
   a.roadmap-item .rtitle{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); }
   a.roadmap-item:hover .rtitle{ color: var(--purple-deep); }
 
-  /* ---------- Unit journey ---------- */
-  .journey{ display:flex; flex-wrap: wrap; align-items: stretch; gap: 4px; margin: 20px 0; }
-  .journey-step{
-    flex: 1 1 200px;
-    min-width: 160px;
-    background: var(--purple-tint);
-    border-radius: 12px;
-    padding: 16px 18px;
-  }
-  .journey-step .emoji{ font-size: 1.4rem; display:block; margin-bottom: 8px; }
-  .journey-step .jw{ font-size: 0.76rem; font-weight: 700; color: var(--purple-deep); text-transform: uppercase; letter-spacing: 0.05em; }
-  .journey-step .jt{ font-weight: 700; font-size: 1.05rem; margin: 2px 0 6px; color: var(--ink); }
-  .journey-step p{ font-size: 0.88rem; margin: 0; }
-  .journey-arrow{ color: var(--purple-deep); font-size: 1.4rem; font-weight: 700; align-items: center; justify-content: center; }
-  .journey-arrow.h{ display: flex; flex: 0 0 auto; width: 28px; }
-  .journey-arrow.v{ display: none; }
-  @media (max-width: 780px){
-    .journey{ flex-direction: column; }
-    .journey-arrow.h{ display: none; }
-    .journey-arrow.v{ display: flex; padding: 2px 0; }
-  }
-
   /* ---------- Callout ---------- */
   .callout{
     border-left: 3px solid var(--purple);
@@ -492,39 +470,6 @@
       <h3>Workshop philosophy</h3>
       <p>Your Platform brief isn't just a project to complete — it's a doorway into conversations, ideas, and ways of thinking that can help you understand your own design practice. Platform Leaders have carefully chosen concepts, readings, and approaches that represent important conversations in Graphic Communication Design. By exploring these, you aren't just preparing for Unit 6 — you're discovering new ways to research, think about, and talk about your work.</p>
 
-      <h3>Your unit journey</h3>
-      <div class="journey">
-        <div class="journey-step">
-          <span class="emoji">🔵</span>
-          <div class="jw">Weeks 1–5</div>
-          <div class="jt">Gathering &amp; Experimenting</div>
-          <p>Platform 1 concepts as research lenses.</p>
-        </div>
-        <span class="journey-arrow h">→</span>
-        <span class="journey-arrow v">↓</span>
-        <div class="journey-step">
-          <span class="emoji">🌉</span>
-          <div class="jw">Week 6</div>
-          <div class="jt">The Bridge</div>
-          <p>Switch to Platform 2.</p>
-        </div>
-        <span class="journey-arrow h">→</span>
-        <span class="journey-arrow v">↓</span>
-        <div class="journey-step">
-          <span class="emoji">🟢</span>
-          <div class="jw">Weeks 7–11</div>
-          <div class="jt">Connecting &amp; Documenting</div>
-          <p>Analyse your Platform 2 work.</p>
-        </div>
-        <span class="journey-arrow h">→</span>
-        <span class="journey-arrow v">↓</span>
-        <div class="journey-step">
-          <span class="emoji">🏁</span>
-          <div class="jw">Weeks 12–13</div>
-          <div class="jt">Finalising</div>
-          <p>Refine, edit, and publish your critical report.</p>
-        </div>
-      </div>
       <p><a href="#programme">See the full 13-week programme →</a></p>
       <p><em>Note: Assessment is holistic and summative, taking place at the end of the unit. You'll receive formative feedback throughout from tutors and peers.</em></p>
     </section>
