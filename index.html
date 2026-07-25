@@ -38,7 +38,10 @@
     outline-offset: 2px;
   }
 
-  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  @media (min-width: 700px){ .wrap{ padding: 0 48px; } }
+  @media (min-width: 1100px){ .wrap{ padding: 0 72px; } }
+  @media (min-width: 1400px){ .wrap{ padding: 0 96px; } }
 
   p{ color: var(--muted); margin: 0 0 14px; }
   p:last-child{ margin-bottom: 0; }
@@ -139,50 +142,82 @@
   }
   h3{ font-size: 1.15rem; margin: 0 0 10px; color: var(--ink); }
 
-  /* ---------- At-a-glance cards ---------- */
-  .card-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
-  }
-  .week-card{
+  /* ---------- Current week card ----------
+     .visual applies a CSS duotone: drop any <img> (or <svg>) in as the
+     content and it auto-tints to the site's purple via blend modes —
+     no per-image editing needed. */
+  .current-week-card{
+    display: flex;
+    gap: 24px;
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
-    display:flex;
-    flex-direction: column;
+    max-width: 620px;
     text-decoration: none;
     color: inherit;
+    transition: border-color 0.15s ease;
   }
-  .week-card:hover .visual{ transform: scale(1.02); }
-  .visual{
-    aspect-ratio: 4/3;
-    background: linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 100%);
-    display:flex; align-items:center; justify-content:center;
-    transition: transform 0.25s ease;
+  .current-week-card:hover{ border-color: var(--purple); }
+  .current-week-card .visual{
+    flex: 0 0 220px;
+    aspect-ratio: 4 / 3;
     position: relative;
     overflow: hidden;
+    background: var(--purple-tint-2);
   }
-  .visual::after{
-    content:"";
-    position:absolute; inset:0;
-    background: repeating-linear-gradient(115deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 14px);
+  .current-week-card .visual img,
+  .current-week-card .visual svg{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    mix-blend-mode: luminosity;
   }
-  .visual .wk{
-    font-size: 3.2rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.92);
-    letter-spacing: -0.02em;
-    z-index: 1;
+  .current-week-card .visual::after{
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 100%);
+    mix-blend-mode: color;
   }
-  .week-card.tbc .visual{ background: var(--purple-tint-2); }
-  .week-card.tbc .visual .wk{ color: var(--purple-deep); opacity: 0.5; }
-  .week-card .body{ padding: 16px 4px 4px; }
-  .week-card .title{ font-weight: 700; font-size: 1.02rem; margin-bottom: 6px; color: var(--ink); }
-  .week-card .tags{ font-size: 0.85rem; margin-bottom: 6px; }
-  .week-card .tags span{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); color: var(--purple-deep); }
-  .week-card .date{ font-size: 0.8rem; color: var(--muted); }
-  .week-card.tbc .title, .week-card.tbc .date{ color: var(--muted); font-style: italic; }
+  .current-week-card .body{
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 22px 24px 22px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+  .current-week-card .status{
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--purple-deep);
+    background: var(--purple-tint);
+    border-radius: 999px;
+    padding: 4px 10px;
+    margin-bottom: 2px;
+  }
+  .current-week-card .cw-title{ font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+  .current-week-card .cw-tags{ font-size: 0.85rem; }
+  .current-week-card .cw-tags span{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); color: var(--purple-deep); }
+  .current-week-card .cw-date{ font-size: 0.85rem; color: var(--muted); }
+  .current-week-card .cw-link{ font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+  .current-week-fallback{
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    max-width: 620px;
+    color: var(--muted);
+  }
+  .current-week-fallback strong{ color: var(--ink); font-weight: 600; }
+  @media (max-width: 600px){
+    .current-week-card{ flex-direction: column; max-width: none; }
+    .current-week-card .visual{ flex-basis: auto; width: 100%; aspect-ratio: 16 / 9; }
+    .current-week-card .body{ padding: 18px 20px 20px; }
+  }
 
   /* ---------- Learning outcomes ---------- */
   .lo-list{ list-style: none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
@@ -420,27 +455,13 @@
 
   <main class="content">
 
-    <!-- AT A GLANCE -->
-    <section id="glance">
-      <h2 class="section-title">At a glance</h2>
-      <div class="card-grid">
-        <a class="week-card" href="#week-1">
-          <div class="visual"><span class="wk">W1</span></div>
-          <div class="body">
-            <div class="title">Expanding Research</div>
-            <div class="tags"><span>Gathering</span>, <span>Experimenting</span>, <span>Research frameworks</span></div>
-            <div class="date">2 October 2025 · 10:00–13:00</div>
-          </div>
-        </a>
-        <a class="week-card" href="#week-2">
-          <div class="visual"><span class="wk">W2</span></div>
-          <div class="body">
-            <div class="title">Questioning Your Sources</div>
-            <div class="tags"><span>Gathering</span>, <span>Experimenting</span>, <span>Critical engagement</span></div>
-            <div class="date">9 October 2025 · 10:00–13:00</div>
-          </div>
-        </a>
-      </div>
+    <!-- CURRENT WEEK -->
+    <section id="current-week">
+      <h2 class="section-title">Current Week</h2>
+      <div id="currentWeekSlot"></div>
+      <noscript>
+        <div class="current-week-fallback">See the <a href="#programme">full 13-week programme</a> below.</div>
+      </noscript>
     </section>
 
     <!-- FULL PROGRAMME -->
@@ -836,6 +857,60 @@
   document.getElementById('printBtn').addEventListener('click', function(){
     window.print();
   });
+
+  (function(){
+    // Known session dates. Weeks 4-13 aren't dated yet — add them here
+    // once confirmed and this card will pick them up automatically.
+    var weeks = [
+      { n: 1, start: '2025-10-02', end: '2025-10-08', title: 'Expanding Research', tags: ['Gathering & Experimenting'], date: '2 October 2025 · 10:00–13:00', anchor: '#week-1', hasDetail: true },
+      { n: 2, start: '2025-10-09', end: '2025-10-15', title: 'Questioning Your Sources', tags: ['Gathering & Experimenting'], date: '9 October 2025 · 10:00–13:00', anchor: '#week-2', hasDetail: true },
+      { n: 3, start: '2025-10-16', end: '2025-10-22', title: 'Whose Voices, Whose Stories?', tags: ['Gathering & Experimenting'], date: '16 October 2025', anchor: '#programme', hasDetail: false }
+    ];
+
+    var slot = document.getElementById('currentWeekSlot');
+    if (slot) {
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      // Placeholder textured graphic — swap for a real photo (<img src="...">)
+      // in .visual and it will auto-tint to the site purple via CSS blend modes.
+      var placeholderVisual =
+        '<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">' +
+        '<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>' +
+        '<rect width="100%" height="100%" fill="#8a8a8a"/>' +
+        '<rect width="100%" height="100%" filter="url(#grain)" opacity="0.55"/>' +
+        '</svg>';
+
+      function cardHTML(w, statusLabel){
+        var tagsHtml = w.tags.map(function(t){ return '<span>' + t + '</span>'; }).join(', ');
+        var linkHtml = '<div class="cw-link">' + (w.hasDetail ? 'View full session →' : 'See what\'s coming →') + '</div>';
+        return '<a class="current-week-card" href="' + w.anchor + '">' +
+          '<div class="visual">' + placeholderVisual + '</div>' +
+          '<div class="body">' +
+            '<span class="status">' + statusLabel + '</span>' +
+            '<div class="cw-title">Week ' + w.n + ' — ' + w.title + '</div>' +
+            '<div class="cw-tags">' + tagsHtml + '</div>' +
+            '<div class="cw-date">' + w.date + '</div>' +
+            linkHtml +
+          '</div>' +
+        '</a>';
+      }
+
+      var current = weeks.filter(function(w){
+        var s = new Date(w.start + 'T00:00:00');
+        var e = new Date(w.end + 'T23:59:59');
+        return today >= s && today <= e;
+      })[0];
+
+      if (current) {
+        slot.innerHTML = cardHTML(current, 'This week');
+      } else if (today < new Date(weeks[0].start + 'T00:00:00')) {
+        slot.innerHTML = cardHTML(weeks[0], 'Starts 2 Oct');
+      } else {
+        slot.innerHTML = '<div class="current-week-fallback">No live session is scheduled for right now. <strong><a href="#programme">See the full 13-week programme →</a></strong></div>';
+      }
+    }
+  })();
 
   (function(){
     var links = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
