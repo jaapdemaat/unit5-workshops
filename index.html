@@ -194,7 +194,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    z-index: 1;
+    z-index: 2;
     font-size: 0.68rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -203,6 +203,17 @@
     background: rgba(255,255,255,0.94);
     border-radius: 999px;
     padding: 4px 10px;
+  }
+  .current-week-card .visual .wk{
+    position: absolute; inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: -0.02em;
   }
   .current-week-card .cw-title{ font-weight: 700; font-size: 1.05rem; color: var(--ink); }
   .current-week-card .cw-tags{ font-size: 0.85rem; }
@@ -798,7 +809,10 @@
     // Full 13-week programme. Weeks 4-13 aren't dated yet — add start/end
     // here once confirmed and the current-week highlight will pick them up.
     var weeks = [
-      { n: 1, start: '2025-10-02', end: '2025-10-08', title: 'Expanding Research', tags: ['Gathering & Experimenting'], date: '2 October 2025 · 10:00–13:00', anchor: '#week-1', hasDetail: true },
+      // "image" is optional — set it to a real photo path (e.g. "images/week1.jpg")
+      // and the card will use it instead of the placeholder texture, auto-tinted
+      // to the site purple via the existing CSS duotone blend.
+      { n: 1, start: '2025-10-02', end: '2025-10-08', title: 'Expanding Research', tags: ['Gathering & Experimenting'], date: '2 October 2025 · 10:00–13:00', anchor: '#week-1', hasDetail: true, image: null },
       { n: 2, start: '2025-10-09', end: '2025-10-15', title: 'Questioning Your Sources', tags: ['Gathering & Experimenting'], date: '9 October 2025 · 10:00–13:00', anchor: '#week-2', hasDetail: true },
       { n: 3, start: '2025-10-16', end: '2025-10-22', title: 'Whose Voices, Whose Stories?', tags: ['Gathering & Experimenting'], date: '16 October 2025', anchor: '#programme', hasDetail: false },
       { n: 4, start: null, end: null, title: 'Your Material as Research', tags: ['Gathering & Experimenting'], date: '', anchor: '#programme', hasDetail: false },
@@ -832,8 +846,10 @@
         var dateHtml = w.date ? '<div class="cw-date">' + w.date + '</div>' : '';
         var linkHtml = '<div class="cw-link">' + (w.hasDetail ? 'View full session →' : 'See what\'s coming →') + '</div>';
         var badgeHtml = statusLabel ? '<span class="status">' + statusLabel + '</span>' : '';
+        var imageHtml = w.image ? '<img src="' + w.image + '" alt="">' : placeholderVisual;
+        var wkHtml = '<span class="wk">W' + w.n + '</span>';
         return '<a class="current-week-card" href="' + w.anchor + '">' +
-          '<div class="visual">' + badgeHtml + placeholderVisual + '</div>' +
+          '<div class="visual">' + badgeHtml + imageHtml + wkHtml + '</div>' +
           '<div class="body">' +
             '<div class="cw-title">Week ' + w.n + ' — ' + w.title + '</div>' +
             '<div class="cw-tags">' + tagsHtml + '</div>' +
