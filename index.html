@@ -142,24 +142,27 @@
   }
   h3{ font-size: 1.15rem; margin: 0 0 10px; color: var(--ink); }
 
-  /* ---------- Current week card ----------
+  /* ---------- Current week cards ----------
      .visual applies a CSS duotone: drop any <img> (or <svg>) in as the
      content and it auto-tints to the site's purple via blend modes —
      no per-image editing needed. */
+  .current-week-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+  }
   .current-week-card{
     display: flex;
-    gap: 24px;
+    flex-direction: column;
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
-    max-width: 620px;
     text-decoration: none;
     color: inherit;
     transition: border-color 0.15s ease;
   }
   .current-week-card:hover{ border-color: var(--purple); }
   .current-week-card .visual{
-    flex: 0 0 220px;
     aspect-ratio: 4 / 3;
     position: relative;
     overflow: hidden;
@@ -182,42 +185,30 @@
   .current-week-card .body{
     flex: 1 1 auto;
     min-width: 0;
-    padding: 22px 24px 22px 0;
+    padding: 16px 18px 18px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 6px;
   }
   .current-week-card .status{
-    align-self: flex-start;
-    font-size: 0.72rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    font-size: 0.68rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--purple-deep);
-    background: var(--purple-tint);
+    background: rgba(255,255,255,0.94);
     border-radius: 999px;
     padding: 4px 10px;
-    margin-bottom: 2px;
   }
-  .current-week-card .cw-title{ font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+  .current-week-card .cw-title{ font-weight: 700; font-size: 1.05rem; color: var(--ink); }
   .current-week-card .cw-tags{ font-size: 0.85rem; }
   .current-week-card .cw-tags span{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); color: var(--purple-deep); }
-  .current-week-card .cw-date{ font-size: 0.85rem; color: var(--muted); }
-  .current-week-card .cw-link{ font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
-  .current-week-fallback{
-    border: 1px dashed var(--border);
-    border-radius: 16px;
-    padding: 28px 24px;
-    max-width: 620px;
-    color: var(--muted);
-  }
-  .current-week-fallback strong{ color: var(--ink); font-weight: 600; }
-  @media (max-width: 600px){
-    .current-week-card{ flex-direction: column; max-width: none; }
-    .current-week-card .visual{ flex-basis: auto; width: 100%; aspect-ratio: 16 / 9; }
-    .current-week-card .body{ padding: 18px 20px 20px; }
-  }
+  .current-week-card .cw-date{ font-size: 0.8rem; color: var(--muted); }
+  .current-week-card .cw-link{ font-size: 0.85rem; font-weight: 600; margin-top: 4px; }
 
   /* ---------- Learning outcomes ---------- */
   .lo-list{ list-style: none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
@@ -458,9 +449,9 @@
     <!-- CURRENT WEEK -->
     <section id="current-week">
       <h2 class="section-title">Current Week</h2>
-      <div id="currentWeekSlot"></div>
+      <div class="current-week-grid" id="currentWeekSlot"></div>
       <noscript>
-        <div class="current-week-fallback">See the <a href="#programme">full 13-week programme</a> below.</div>
+        <p>See the <a href="#programme">full 13-week programme</a> below.</p>
       </noscript>
     </section>
 
@@ -859,12 +850,22 @@
   });
 
   (function(){
-    // Known session dates. Weeks 4-13 aren't dated yet — add them here
-    // once confirmed and this card will pick them up automatically.
+    // Full 13-week programme. Weeks 4-13 aren't dated yet — add start/end
+    // here once confirmed and the current-week highlight will pick them up.
     var weeks = [
       { n: 1, start: '2025-10-02', end: '2025-10-08', title: 'Expanding Research', tags: ['Gathering & Experimenting'], date: '2 October 2025 · 10:00–13:00', anchor: '#week-1', hasDetail: true },
       { n: 2, start: '2025-10-09', end: '2025-10-15', title: 'Questioning Your Sources', tags: ['Gathering & Experimenting'], date: '9 October 2025 · 10:00–13:00', anchor: '#week-2', hasDetail: true },
-      { n: 3, start: '2025-10-16', end: '2025-10-22', title: 'Whose Voices, Whose Stories?', tags: ['Gathering & Experimenting'], date: '16 October 2025', anchor: '#programme', hasDetail: false }
+      { n: 3, start: '2025-10-16', end: '2025-10-22', title: 'Whose Voices, Whose Stories?', tags: ['Gathering & Experimenting'], date: '16 October 2025', anchor: '#programme', hasDetail: false },
+      { n: 4, start: null, end: null, title: 'Your Material as Research', tags: ['Gathering & Experimenting'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 5, start: null, end: null, title: 'Making Generates Meaning', tags: ['Gathering & Experimenting'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 6, start: null, end: null, title: 'Structures (The Bridge)', tags: ['The Bridge'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 7, start: null, end: null, title: 'Frameworks', tags: ['Connecting & Documenting'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 8, start: null, end: null, title: 'Peer Review (Midpoint Feedback)', tags: ['Connecting & Documenting'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 9, start: null, end: null, title: 'Individual Tutorials', tags: ['Connecting & Documenting'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 10, start: null, end: null, title: 'Individual Tutorials (continued)', tags: ['Connecting & Documenting'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 11, start: null, end: null, title: 'Accessibility & Publishing as Critical Practice', tags: ['Connecting & Documenting'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 12, start: null, end: null, title: 'Title TBC', tags: ['Finalising'], date: '', anchor: '#programme', hasDetail: false },
+      { n: 13, start: null, end: null, title: 'Title TBC', tags: ['Finalising'], date: '', anchor: '#programme', hasDetail: false }
     ];
 
     var slot = document.getElementById('currentWeekSlot');
@@ -883,32 +884,43 @@
 
       function cardHTML(w, statusLabel){
         var tagsHtml = w.tags.map(function(t){ return '<span>' + t + '</span>'; }).join(', ');
+        var dateHtml = w.date ? '<div class="cw-date">' + w.date + '</div>' : '';
         var linkHtml = '<div class="cw-link">' + (w.hasDetail ? 'View full session →' : 'See what\'s coming →') + '</div>';
+        var badgeHtml = statusLabel ? '<span class="status">' + statusLabel + '</span>' : '';
         return '<a class="current-week-card" href="' + w.anchor + '">' +
-          '<div class="visual">' + placeholderVisual + '</div>' +
+          '<div class="visual">' + badgeHtml + placeholderVisual + '</div>' +
           '<div class="body">' +
-            '<span class="status">' + statusLabel + '</span>' +
             '<div class="cw-title">Week ' + w.n + ' — ' + w.title + '</div>' +
             '<div class="cw-tags">' + tagsHtml + '</div>' +
-            '<div class="cw-date">' + w.date + '</div>' +
+            dateHtml +
             linkHtml +
           '</div>' +
         '</a>';
       }
 
-      var current = weeks.filter(function(w){
+      var datedWeeks = weeks.filter(function(w){ return w.start; });
+      var matchedIndex = -1;
+      var beforeTermStart = today < new Date(datedWeeks[0].start + 'T00:00:00');
+
+      datedWeeks.forEach(function(w){
         var s = new Date(w.start + 'T00:00:00');
         var e = new Date(w.end + 'T23:59:59');
-        return today >= s && today <= e;
-      })[0];
+        if (today >= s && today <= e) matchedIndex = w.n - 1;
+      });
 
-      if (current) {
-        slot.innerHTML = cardHTML(current, 'This week');
-      } else if (today < new Date(weeks[0].start + 'T00:00:00')) {
-        slot.innerHTML = cardHTML(weeks[0], 'Starts 2 Oct');
-      } else {
-        slot.innerHTML = '<div class="current-week-fallback">No live session is scheduled for right now. <strong><a href="#programme">See the full 13-week programme →</a></strong></div>';
-      }
+      // Window start: the matched week if we have one, otherwise the
+      // start of the programme — but only the matched week (or the
+      // "starts soon" week) ever gets a badge, never the fallback.
+      var windowStart = matchedIndex !== -1 ? matchedIndex : 0;
+      var startIndex = Math.min(Math.max(windowStart, 0), weeks.length - 3);
+      var windowWeeks = weeks.slice(startIndex, startIndex + 3);
+
+      slot.innerHTML = windowWeeks.map(function(w){
+        var label = '';
+        if (matchedIndex !== -1 && w.n - 1 === matchedIndex) label = 'This week';
+        else if (matchedIndex === -1 && beforeTermStart && w.n === 1) label = 'Starts 2 Oct';
+        return cardHTML(w, label);
+      }).join('');
     }
   })();
 
