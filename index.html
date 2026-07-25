@@ -239,7 +239,29 @@
   a.roadmap-item .rtitle{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); }
   a.roadmap-item:hover .rtitle{ color: var(--purple-deep); }
 
-  /* ---------- Callout (facilitator note) ---------- */
+  /* ---------- Unit journey ---------- */
+  .journey{ display:flex; flex-wrap: wrap; align-items: stretch; gap: 4px; margin: 20px 0; }
+  .journey-step{
+    flex: 1 1 200px;
+    min-width: 160px;
+    background: var(--purple-tint);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .journey-step .emoji{ font-size: 1.4rem; display:block; margin-bottom: 8px; }
+  .journey-step .jw{ font-size: 0.76rem; font-weight: 700; color: var(--purple-deep); text-transform: uppercase; letter-spacing: 0.05em; }
+  .journey-step .jt{ font-weight: 700; font-size: 1.05rem; margin: 2px 0 6px; color: var(--ink); }
+  .journey-step p{ font-size: 0.88rem; margin: 0; }
+  .journey-arrow{ color: var(--purple-deep); font-size: 1.4rem; font-weight: 700; align-items: center; justify-content: center; }
+  .journey-arrow.h{ display: flex; flex: 0 0 auto; width: 28px; }
+  .journey-arrow.v{ display: none; }
+  @media (max-width: 780px){
+    .journey{ flex-direction: column; }
+    .journey-arrow.h{ display: none; }
+    .journey-arrow.v{ display: flex; padding: 2px 0; }
+  }
+
+  /* ---------- Callout ---------- */
   .callout{
     border-left: 3px solid var(--purple);
     background: var(--purple-tint);
@@ -367,7 +389,7 @@
     </nav>
   </div>
   <div class="wrap intro">
-    <p>General Unit 5 facilitator's notes. Unit 5 runs concurrently with Unit 6 for 15 weeks and culminates in a 2,500-word designed critical report — this page collects the shared framework and the week-by-week workshop plans.</p>
+    <p>Unit 5 runs concurrently with Unit 6 for 15 weeks and culminates in a 2,500-word designed critical report. Here's the shared framework and your week-by-week workshop plan.</p>
   </div>
 </header>
 
@@ -378,27 +400,20 @@
     <nav class="toc">
       <ul>
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#programme">Full Programme <span class="count">(11)</span></a></li>
+        <li><a href="#programme">Full Programme <span class="count">(13)</span></a></li>
         <li><a href="#learning-outcomes">Learning Outcomes <span class="count">(3)</span></a></li>
         <li>Logistics
           <ul>
-            <li><a href="#room-setup">Room Setup &amp; Logistics <span class="count">(3)</span></a></li>
+            <li><a href="#room-setup">Session Logistics <span class="count">(2)</span></a></li>
             <li><a href="#tutor-groupings">Tutor Groupings <span class="count">(5)</span></a></li>
-            <li><a href="#co-teaching">Co-Teaching Model <span class="count">(7)</span></a></li>
-            <li><a href="#pre-session">Pre-Session Alignment <span class="count">(5)</span></a></li>
           </ul>
         </li>
         <li><a href="#week-1">Week 1: Expanding Research <span class="count">(7)</span></a>
           <ul>
-            <li><a href="#week-1-note">Facilitator's Note</a></li>
             <li><a href="#week-1-faq">FAQ <span class="count">(3)</span></a></li>
           </ul>
         </li>
-        <li><a href="#week-2">Week 2: Questioning Your Sources <span class="count">(11)</span></a>
-          <ul>
-            <li><a href="#week-2-note">Facilitator's Note</a></li>
-          </ul>
-        </li>
+        <li><a href="#week-2">Week 2: Questioning Your Sources <span class="count">(11)</span></a></li>
       </ul>
     </nav>
   </aside>
@@ -430,20 +445,22 @@
 
     <!-- FULL PROGRAMME -->
     <section id="programme">
-      <h2 class="section-title">Full Programme — 11 Weeks</h2>
-      <p>The complete arc of Unit 5, grouped by pedagogical phase. Weeks 1–2 are detailed in full below; later weeks will be expanded into full facilitator notes as they're finalised.</p>
+      <h2 class="section-title">Full Programme — 13 Weeks</h2>
+      <p>The complete arc of Unit 5, grouped by stage of the journey. Weeks 1–2 are detailed in full below; later weeks will be added in full nearer the time.</p>
       <div class="roadmap">
-        <a class="roadmap-item" href="#week-1"><span class="wk">Week 1</span><span class="rtitle">Expanding Research</span><span class="chip">Gathering</span></a>
-        <a class="roadmap-item" href="#week-2"><span class="wk">Week 2</span><span class="rtitle">Questioning Your Sources</span><span class="chip">Gathering</span></a>
-        <div class="roadmap-item"><span class="wk">Week 3</span><span class="rtitle">Whose Voices, Whose Stories?</span><span class="chip">Gathering</span></div>
-        <div class="roadmap-item"><span class="wk">Week 4</span><span class="rtitle">Your Material as Research</span><span class="chip">Experimenting</span></div>
-        <div class="roadmap-item"><span class="wk">Week 5</span><span class="rtitle">Making Generates Meaning</span><span class="chip">Experimenting</span></div>
-        <div class="roadmap-item"><span class="wk">Week 6</span><span class="rtitle">Structures (The Bridge)</span><span class="chip">Connecting</span></div>
-        <div class="roadmap-item"><span class="wk">Week 7</span><span class="rtitle">Frameworks</span><span class="chip">Documenting</span></div>
-        <div class="roadmap-item"><span class="wk">Week 8</span><span class="rtitle">Peer Review (Midpoint Feedback)</span><span class="chip">Documenting</span></div>
-        <div class="roadmap-item"><span class="wk">Week 9</span><span class="rtitle">Individual Tutorials</span><span class="chip">Finalising</span></div>
-        <div class="roadmap-item"><span class="wk">Week 10</span><span class="rtitle">Individual Tutorials (continued)</span><span class="chip">Finalising</span></div>
-        <div class="roadmap-item"><span class="wk">Week 11</span><span class="rtitle">Accessibility &amp; Publishing as Critical Practice</span><span class="chip">Finalising</span></div>
+        <a class="roadmap-item" href="#week-1"><span class="wk">Week 1</span><span class="rtitle">Expanding Research</span><span class="chip">Gathering &amp; Experimenting</span></a>
+        <a class="roadmap-item" href="#week-2"><span class="wk">Week 2</span><span class="rtitle">Questioning Your Sources</span><span class="chip">Gathering &amp; Experimenting</span></a>
+        <div class="roadmap-item"><span class="wk">Week 3</span><span class="rtitle">Whose Voices, Whose Stories?</span><span class="chip">Gathering &amp; Experimenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 4</span><span class="rtitle">Your Material as Research</span><span class="chip">Gathering &amp; Experimenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 5</span><span class="rtitle">Making Generates Meaning</span><span class="chip">Gathering &amp; Experimenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 6</span><span class="rtitle">Structures (The Bridge)</span><span class="chip">The Bridge</span></div>
+        <div class="roadmap-item"><span class="wk">Week 7</span><span class="rtitle">Frameworks</span><span class="chip">Connecting &amp; Documenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 8</span><span class="rtitle">Peer Review (Midpoint Feedback)</span><span class="chip">Connecting &amp; Documenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 9</span><span class="rtitle">Individual Tutorials</span><span class="chip">Connecting &amp; Documenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 10</span><span class="rtitle">Individual Tutorials (continued)</span><span class="chip">Connecting &amp; Documenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 11</span><span class="rtitle">Accessibility &amp; Publishing as Critical Practice</span><span class="chip">Connecting &amp; Documenting</span></div>
+        <div class="roadmap-item"><span class="wk">Week 12</span><span class="rtitle">Title TBC</span><span class="chip">Finalising</span></div>
+        <div class="roadmap-item"><span class="wk">Week 13</span><span class="rtitle">Title TBC</span><span class="chip">Finalising</span></div>
       </div>
     </section>
 
@@ -461,25 +478,43 @@
       <p>Unit 5 and Unit 6 run side-by-side. This allows students to consider their practice in relation to cultural, social, and theoretical contexts of contemporary Graphic Communication Design and discover emerging themes that begin to inform their creative practice.</p>
 
       <h3>Workshop philosophy</h3>
-      <p>Your Platform brief isn't just a project to complete — it's a doorway into conversations, ideas, and ways of thinking that can help you understand your own design practice. Platform Leaders have carefully chosen concepts, readings, and approaches that represent important conversations in Graphic Communication Design. By exploring these, students aren't just preparing for Unit 6 — they're discovering new ways to research, think about, and talk about their work.</p>
+      <p>Your Platform brief isn't just a project to complete — it's a doorway into conversations, ideas, and ways of thinking that can help you understand your own design practice. Platform Leaders have carefully chosen concepts, readings, and approaches that represent important conversations in Graphic Communication Design. By exploring these, you aren't just preparing for Unit 6 — you're discovering new ways to research, think about, and talk about your work.</p>
 
-      <h3>Platform progression</h3>
-      <ul class="plain-list">
-        <li><strong>Weeks 1–5 (Platform 1):</strong> Research training. Students use Platform 1 concepts to practice research skills — finding references, annotating, questioning, gathering.</li>
-        <li><strong>Week 6 (THE BRIDGE):</strong> Students switch to Platform 2 (different brief, same group). Stop exploring concepts; start analysing their own work.</li>
-        <li><strong>Weeks 7–11 (Platform 2):</strong> Students analyse what their Platform 2 work reveals and write the critical report.</li>
-      </ul>
-
-      <h3>Five pedagogical phases</h3>
-      <ul class="plain-list">
-        <li><strong>Gathering</strong> (Weeks 1–3): Finding, questioning, and mapping sources — <em>Expanding Research, Questioning Your Sources, Whose Voices, Whose Stories?</em></li>
-        <li><strong>Experimenting</strong> (Weeks 4–5): Material thinking and making as research — <em>Your Material as Research, Making Generates Meaning</em></li>
-        <li><strong>Connecting</strong> (Week 6): The bridge — positioning their own practice — <em>Structures (The Bridge)</em></li>
-        <li><strong>Documenting</strong> (Weeks 7–8): Frameworks and peer feedback — <em>Frameworks, Peer Review (Midpoint Feedback)</em></li>
-        <li><strong>Finalising</strong> (Weeks 9–11): Refinement, accessibility, and publication — <em>Individual Tutorials, Individual Tutorials (continued), Accessibility &amp; Publishing as Critical Practice</em></li>
-      </ul>
-      <p><a href="#programme">See the full 11-week programme →</a></p>
-      <p><em>Note: Assessment is holistic and summative, taking place at the end of the unit. Students receive formative feedback throughout from tutors and peers.</em></p>
+      <h3>Your unit journey</h3>
+      <div class="journey">
+        <div class="journey-step">
+          <span class="emoji">🔵</span>
+          <div class="jw">Weeks 1–5</div>
+          <div class="jt">Gathering &amp; Experimenting</div>
+          <p>Platform 1 concepts as research lenses.</p>
+        </div>
+        <span class="journey-arrow h">→</span>
+        <span class="journey-arrow v">↓</span>
+        <div class="journey-step">
+          <span class="emoji">🌉</span>
+          <div class="jw">Week 6</div>
+          <div class="jt">The Bridge</div>
+          <p>Switch to Platform 2.</p>
+        </div>
+        <span class="journey-arrow h">→</span>
+        <span class="journey-arrow v">↓</span>
+        <div class="journey-step">
+          <span class="emoji">🟢</span>
+          <div class="jw">Weeks 7–11</div>
+          <div class="jt">Connecting &amp; Documenting</div>
+          <p>Analyse your Platform 2 work.</p>
+        </div>
+        <span class="journey-arrow h">→</span>
+        <span class="journey-arrow v">↓</span>
+        <div class="journey-step">
+          <span class="emoji">🏁</span>
+          <div class="jw">Weeks 12–13</div>
+          <div class="jt">Finalising</div>
+          <p>Refine, edit, and publish your critical report.</p>
+        </div>
+      </div>
+      <p><a href="#programme">See the full 13-week programme →</a></p>
+      <p><em>Note: Assessment is holistic and summative, taking place at the end of the unit. You'll receive formative feedback throughout from tutors and peers.</em></p>
     </section>
 
     <!-- LEARNING OUTCOMES -->
@@ -501,29 +536,23 @@
       </ul>
     </section>
 
-    <!-- ROOM SETUP -->
+    <!-- SESSION LOGISTICS -->
     <section id="room-setup">
-      <h2 class="section-title">Room Setup &amp; Logistics</h2>
+      <h2 class="section-title">Session Logistics</h2>
 
-      <h3>Default room setup (pre-arranged)</h3>
+      <h3>What to bring</h3>
       <ul class="plain-list">
-        <li>Two large tables, each with 15+ chairs</li>
-        <li>Flexible arrangement: tutors and students can rearrange based on workshop activities and needs</li>
-      </ul>
-
-      <h3>Technology</h3>
-      <ul class="plain-list">
-        <li>Both facilitators and students bring laptops (required)</li>
-        <li>Most workshops are analogue (paper, Post-its, pens, marking)</li>
-        <li>Reflective writing tasks are digital: students write in MS Word/Teams and submit digitally</li>
+        <li>Bring a laptop — required every session</li>
+        <li>Most workshops are analogue: bring paper, Post-its, and pens for marking up references</li>
+        <li>Reflective writing tasks are digital — you'll write in MS Word/Teams and submit online</li>
       </ul>
 
       <h3>Session timing</h3>
       <ul class="plain-list">
         <li>All sessions start at 10:00 — no exceptions</li>
-        <li>Students instructed to arrive 15 minutes earlier (9:45)</li>
-        <li>Close the door at 10:00 to signal the session has started</li>
-        <li>Remind students to record attendance on Seats</li>
+        <li>Arrive 15 minutes early (9:45) if you can</li>
+        <li>The door closes at 10:00 — that's the start of the session</li>
+        <li>Record your attendance on Seats</li>
       </ul>
     </section>
 
@@ -539,54 +568,12 @@
       </div>
 
       <h3 style="margin-top:28px;">Context</h3>
-      <p>Unit 5 runs for 11 weeks. Each workshop is designed for two groups (15+ each) working in one classroom with two tutors. Most workshops use a shared intro + pre-task discussion, then parallel group work — but workshop structure varies based on pedagogical needs. Check the week-specific facilitator's note for that week's setup.</p>
-    </section>
-
-    <!-- CO-TEACHING MODEL -->
-    <section id="co-teaching">
-      <h2 class="section-title">Co-Teaching Model (flexible)</h2>
-
-      <h3>Shared moments (both tutors, all 30+ students)</h3>
-      <ul class="plain-list">
-        <li>Start of session: intro + frame</li>
-        <li>Pre-task discussion</li>
-        <li>Cross-group viewing or comparable review moment</li>
-        <li>End of session: exit recap or synthesis + submit</li>
-      </ul>
-
-      <h3>Parallel moments (each tutor with their 15+ group)</h3>
-      <ul class="plain-list">
-        <li>Framework or reference introduction (conversational, not a lecture)</li>
-        <li>Main group work (students engage independently; tutor circulates, listens, asks genuine questions)</li>
-        <li>Sharing or viewing moments where groups show their work</li>
-      </ul>
-      <p><em>Note: not all workshops will use all of these. The week-specific facilitator's note will confirm which moments apply that week.</em></p>
-    </section>
-
-    <!-- PRE-SESSION ALIGNMENT -->
-    <section id="pre-session">
-      <h2 class="section-title">Pre-Session Alignment (meet 15 min before)</h2>
-      <p>Always agree on:</p>
-      <ul class="plain-list">
-        <li>How you'll frame the week's purpose and connect to Unit 6 / developing practice</li>
-        <li>What you'll listen for during group work</li>
-        <li>Exit recap or synthesis themes (how you'll weave activities to LOs)</li>
-        <li>Logistics specific to that week's structure</li>
-        <li>Timing adjustments or pedagogical priorities for this workshop</li>
-      </ul>
+      <p>Unit 5 runs for 13 weeks. Each workshop is designed for two groups (15+ each) working in one room with two tutors. Most sessions open with a shared intro, then split into parallel group work with your tutor pair.</p>
     </section>
 
     <!-- WEEK 1 -->
     <section id="week-1">
       <h2 class="section-title">Week 1 — Expanding Research</h2>
-
-      <div class="callout" id="week-1-note">
-        <span class="label">Facilitator's note — tutor only</span>
-        <p><strong>Your role:</strong> After the shared intro, introduce the Platform reference to your group and guide an initial discussion. Then circulate as students explore the reference through close reading and mapping.</p>
-        <p><strong>Key distinction:</strong> Weeks 1–5, your U5 group explores one Platform 1 brief using research frameworks. In Week 6, students switch to Platform 2 — this is where exploration becomes analysis. Unit 5 is training for that pivot.</p>
-        <p><strong>Before Wednesday:</strong> Students will have read Dirk Vis's <em>Be a Stranger</em> (p.85) and <em>No Topic is Too Specific</em> (p.29). Use these during the shared pre-task discussion (10.10–10.30).</p>
-        <p>[Attachment: Dirk Vis PDF — <em>Research for People Who (Think They) Would Rather Create</em>]</p>
-      </div>
 
       <h3>Gathering &amp; Experimenting — Frameworks for Research</h3>
       <p class="date" style="margin-bottom:18px; color:var(--purple-deep); font-weight:700;">2 October · 10:00–13:00</p>
@@ -599,12 +586,15 @@
         <li><span class="tag">🎯 LO2</span><span class="txt">Explore and evaluate a range of historical and contemporary contexts of Graphic Communication Design, and investigate how your developing practice engages with climate, racial, and social justice <span class="ac">(AC Knowledge)</span></span></li>
       </ul>
 
-      <h3>Pre-task (read before the session)</h3>
-      <p>Dirk Vis, <em>Research for People Who (Think They) Would Rather Create</em></p>
-      <ul class="plain-list">
-        <li><strong>Be a Stranger</strong> (p.85): approaching an unfamiliar subject as an outsider can sharpen your thinking, not limit it.</li>
-        <li><strong>No Topic is Too Specific</strong> (p.29): narrowing your focus to something precise gets you to richer conclusions than tackling a broad topic head-on.</li>
-      </ul>
+      <div class="callout">
+        <span class="label">Before this session</span>
+        <p>Dirk Vis, <em>Research for People Who (Think They) Would Rather Create</em></p>
+        <ul class="plain-list">
+          <li><strong>Be a Stranger</strong> (p.85): approaching an unfamiliar subject as an outsider can sharpen your thinking, not limit it.</li>
+          <li><strong>No Topic is Too Specific</strong> (p.29): narrowing your focus to something precise gets you to richer conclusions than tackling a broad topic head-on.</li>
+        </ul>
+        <p>[PDF: Dirk Vis — <em>Research for People Who (Think They) Would Rather Create</em>]</p>
+      </div>
 
       <h3>Introduction</h3>
       <p>Platform Leaders have already chosen concepts, readings, and approaches that represent conversations in Graphic Communication Design. Exploring these now isn't just preparation for Unit 6. It builds the research skills and vocabulary that will let you write a strong, well-informed critical report about your own practice later in the unit.</p>
@@ -704,19 +694,6 @@
     <section id="week-2">
       <h2 class="section-title">Week 2 — Questioning Your Sources</h2>
 
-      <div class="callout" id="week-2-note">
-        <span class="label">Facilitator's note — tutor only</span>
-        <p><strong>Your role:</strong> After the shared intro, introduce the QAR framework to your group and guide the first full read. Then circulate as students cycle through the four questions, annotating and discussing.</p>
-        <p><strong>What students bring in:</strong></p>
-        <ul class="plain-list">
-          <li>They've watched <em>Good Copy Bad Copy</em> (pre-lecture task). [Link: Good Copy Bad Copy — YouTube]</li>
-          <li>They attended Irene Albino's Critical Margins lecture (Tuesday) seeing annotation as artistic and critical practice. [Link: Stage 2 Lecture 2025-26 Padlet]</li>
-          <li>They've read Dirk Vis's "Questions to Help You Get Started." [Link: Dirk Vis PDF — Appendix]</li>
-          <li>They have three references from Week 1. Now they're interrogating one of them.</li>
-        </ul>
-        <p>Your role is support, not direction. Students choose which reference to work with. They find their own marking language (pen, pencil, margin notes, symbols — whatever works for their thinking). Your job is to circulate, listen, ask genuine questions ("What made you mark that?"), and keep the energy moving through the four question cycles.</p>
-      </div>
-
       <h3>Gathering &amp; Experimenting — Critical Engagement with References</h3>
       <p class="date" style="margin-bottom:18px; color:var(--purple-deep); font-weight:700;">9 October · 10:00–13:00</p>
 
@@ -729,8 +706,15 @@
         <li><span class="tag">🎯 LO2</span><span class="txt">Explore and evaluate a range of historical and contemporary contexts of Graphic Communication Design, and investigate how your developing practice engages with climate, racial, and social justice <span class="ac">(AC Knowledge)</span></span></li>
       </ul>
 
-      <h3>Pre-task (read before the session)</h3>
-      <p>Dirk Vis, <em>Research for People Who (Think They) Would Rather Create</em> — specifically the <strong>Questions to Help You Get Started</strong> section (Appendix). Bring your three references from Week 1.</p>
+      <div class="callout">
+        <span class="label">Before this session</span>
+        <ul class="plain-list">
+          <li>Watch <em>Good Copy Bad Copy</em> (pre-lecture task). [Video: Good Copy Bad Copy — YouTube]</li>
+          <li>Attend Irene Albino's Critical Margins lecture (Tuesday), on annotation as artistic and critical practice. [Slides: Stage 2 Lecture 2025–26 Padlet]</li>
+          <li>Read Dirk Vis, <em>Research for People Who (Think They) Would Rather Create</em> — specifically <strong>Questions to Help You Get Started</strong> (Appendix). [PDF: Dirk Vis — Appendix]</li>
+          <li>Bring your three references from Week 1.</li>
+        </ul>
+      </div>
 
       <h3>Schedule</h3>
       <div class="timeline">
@@ -844,7 +828,7 @@
 
 <footer>
   <div class="wrap">
-    <p style="margin:0;">Unit 5: GCD Practices 03 — Workshop Sequence 2025–26. Internal facilitator resource.</p>
+    <p style="margin:0;">Unit 5: GCD Practices 03 — Workshop Sequence 2025–26.</p>
   </div>
 </footer>
 
