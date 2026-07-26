@@ -148,13 +148,13 @@
   h3{ font-size: 1.15rem; margin: 0 0 10px; color: var(--ink); }
 
   /* ---------- Week heading thumbnail ---------- */
-  .week-head{ display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .week-head{ display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
   .week-head .section-title{ margin: 0; }
   .week-thumb{
     flex: 0 0 auto;
-    width: 72px;
-    height: 72px;
-    border-radius: 10px;
+    width: 112px;
+    height: 112px;
+    border-radius: 0;
     position: relative;
     overflow: hidden;
     background: var(--purple-tint-2);
@@ -172,8 +172,20 @@
     background: linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 100%);
     mix-blend-mode: color;
   }
+  .week-thumb .wk{
+    position: absolute; inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: -0.02em;
+  }
   @media (max-width: 500px){
-    .week-thumb{ width: 56px; height: 56px; }
+    .week-thumb{ width: 84px; height: 84px; }
+    .week-thumb .wk{ font-size: 1.4rem; }
   }
 
   /* ---------- Current week cards ----------
@@ -574,8 +586,8 @@
     <!-- WEEK 1 -->
     <section id="week-1">
       <div class="week-head">
-        <div class="week-thumb"><img src="images/week1.jpg" alt=""></div>
-        <h2 class="section-title">Week 1 — Expanding Research</h2>
+        <div class="week-thumb"><img src="images/week1.jpg" alt=""><span class="wk">W1</span></div>
+        <h2 class="section-title">Expanding Research</h2>
       </div>
 
       <h3>Gathering &amp; Experimenting — Frameworks for Research</h3>
@@ -696,8 +708,8 @@
     <!-- WEEK 2 -->
     <section id="week-2">
       <div class="week-head">
-        <div class="week-thumb"><img src="images/week2.jpg" alt=""></div>
-        <h2 class="section-title">Week 2 — Questioning Your Sources</h2>
+        <div class="week-thumb"><img src="images/week2.jpg" alt=""><span class="wk">W2</span></div>
+        <h2 class="section-title">Questioning Your Sources</h2>
       </div>
 
       <h3>Gathering &amp; Experimenting — Critical Engagement with References</h3>
@@ -832,8 +844,8 @@
     <!-- WEEK 11 -->
     <section id="week-11">
       <div class="week-head">
-        <div class="week-thumb"><img src="images/week11.jpg" alt=""></div>
-        <h2 class="section-title">Week 11 — Publishing Your Practice</h2>
+        <div class="week-thumb"><img src="images/week11.jpg" alt=""><span class="wk">W11</span></div>
+        <h2 class="section-title">Publishing Your Practice</h2>
       </div>
 
       <h3>Introduction</h3>
