@@ -147,51 +147,55 @@
   }
   h3{ font-size: 1.15rem; margin: 0 0 10px; color: var(--ink); }
 
-  /* ---------- Week heading thumbnail ---------- */
-  .week-head{ display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
-  .week-head .section-title{ margin: 0; }
-  .week-thumb{
-    flex: 0 0 auto;
-    width: 112px;
-    height: 112px;
-    border-radius: 0;
+  /* ---------- Duotone image treatment ----------
+     Shared by the week-heading thumbnail and the Current Week cards:
+     drop any <img> (or <svg>) into the container and it auto-tints to
+     the site purple via blend modes — no per-image editing needed. */
+  .week-thumb,
+  .current-week-card .visual{
     position: relative;
     overflow: hidden;
     background: var(--purple-tint-2);
   }
-  .week-thumb img{
+  .week-thumb img, .week-thumb svg,
+  .current-week-card .visual img,
+  .current-week-card .visual svg{
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
     filter: grayscale(1) contrast(1.05);
     mix-blend-mode: luminosity;
   }
-  .week-thumb::after{
+  .week-thumb::after,
+  .current-week-card .visual::after{
     content: "";
     position: absolute; inset: 0;
     background: linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 100%);
     mix-blend-mode: color;
   }
-  .week-thumb .wk{
+  .week-thumb .wk,
+  .current-week-card .visual .wk{
     position: absolute; inset: 0;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
     font-weight: 800;
     color: rgba(255,255,255,0.92);
     letter-spacing: -0.02em;
   }
+
+  /* ---------- Week heading thumbnail ---------- */
+  .week-head{ display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+  .week-head .section-title{ margin: 0; }
+  .week-thumb{ flex: 0 0 auto; width: 112px; height: 112px; }
+  .week-thumb .wk{ font-size: 1.8rem; }
   @media (max-width: 500px){
     .week-thumb{ width: 84px; height: 84px; }
     .week-thumb .wk{ font-size: 1.4rem; }
   }
 
-  /* ---------- Current week cards ----------
-     .visual applies a CSS duotone: drop any <img> (or <svg>) in as the
-     content and it auto-tints to the site's purple via blend modes —
-     no per-image editing needed. */
+  /* ---------- Current week cards ---------- */
   .current-week-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -208,26 +212,8 @@
     transition: border-color 0.15s ease;
   }
   .current-week-card:hover{ border-color: var(--purple); }
-  .current-week-card .visual{
-    aspect-ratio: 4 / 3;
-    position: relative;
-    overflow: hidden;
-    background: var(--purple-tint-2);
-  }
-  .current-week-card .visual img,
-  .current-week-card .visual svg{
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    filter: grayscale(1) contrast(1.05);
-    mix-blend-mode: luminosity;
-  }
-  .current-week-card .visual::after{
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 100%);
-    mix-blend-mode: color;
-  }
+  .current-week-card .visual{ aspect-ratio: 4 / 3; }
+  .current-week-card .visual .wk{ font-size: 3rem; }
   .current-week-card .body{
     flex: 1 1 auto;
     min-width: 0;
@@ -250,17 +236,6 @@
     border-radius: 999px;
     padding: 4px 10px;
   }
-  .current-week-card .visual .wk{
-    position: absolute; inset: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.92);
-    letter-spacing: -0.02em;
-  }
   .current-week-card .cw-title{ font-weight: 700; font-size: 1.05rem; color: var(--ink); }
   .current-week-card .cw-tags{ font-size: 0.85rem; }
   .current-week-card .cw-tags span{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); color: var(--purple-deep); }
@@ -268,7 +243,7 @@
   .current-week-card .cw-link{ font-size: 0.85rem; font-weight: 600; margin-top: 4px; }
 
   /* ---------- Learning outcomes ---------- */
-  .lo-list{ list-style: none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .lo-list{ list-style: none; margin:0 0 24px; padding:0; display:flex; flex-direction:column; gap:12px; }
   .lo-list li{
     display:flex; gap: 12px;
     background: var(--purple-tint);
@@ -293,8 +268,19 @@
   .plain-list li{ margin-bottom: 6px; }
   .plain-list strong{ color: var(--ink); }
 
+  /* ---------- Spacing & text utilities ----------
+     Small reused patterns pulled out of inline styles so the same
+     value only lives in one place. */
+  .mt-md{ margin-top: 16px; }
+  .mt-lg{ margin-top: 32px; }
+  .flush-bottom{ margin-bottom: 0; }
+  .session-date{ margin-bottom: 18px; color: var(--purple-deep); font-weight: 700; }
+  .t-note{ color: var(--muted); font-weight: 400; }
+  .materials-note--split{ margin: 4px 0 8px; }
+  .meta-line{ font-size: 0.85rem; color: var(--muted); margin-bottom: 18px; }
+  .meta-line strong{ color: var(--ink); }
+
   /* ---------- Chips ---------- */
-  .chip-row{ display:flex; flex-wrap:wrap; gap: 10px; }
   .chip{
     background: var(--purple-tint);
     color: var(--purple-deep);
@@ -415,6 +401,7 @@
   }
 
   footer{ padding: 30px 0 60px; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); }
+  footer p{ margin: 0; }
 
   @media (min-width: 900px){
     header.top .header-row{ flex-direction: row; justify-content: space-between; align-items: flex-start; }
@@ -481,14 +468,14 @@
       <h2 class="section-title">Current Week</h2>
       <div class="current-week-grid" id="currentWeekSlot"></div>
       <noscript>
-        <p>See the <a href="#programme">full 13-week programme</a> below.</p>
+        <p>See the <a href="#programme">full 15-week programme</a> below.</p>
       </noscript>
     </section>
 
     <!-- OVERVIEW -->
     <section id="overview">
       <h2 class="section-title">Unit 5: GCD Practices 03 — Overview</h2>
-      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:18px;"><strong style="color:var(--ink);">Duration:</strong> 15 weeks (Stage 2, weeks 1–15) &nbsp;·&nbsp; <strong style="color:var(--ink);">Credits:</strong> 20 &nbsp;·&nbsp; <strong style="color:var(--ink);">Delivery:</strong> principally by Contexts tutors, runs in parallel with Unit 6</p>
+      <p class="meta-line"><strong>Duration:</strong> 15 weeks (Stage 2, weeks 1–15) &nbsp;·&nbsp; <strong>Credits:</strong> 20 &nbsp;·&nbsp; <strong>Delivery:</strong> principally by Contexts tutors, runs in parallel with Unit 6</p>
       <p>Unit 5 runs concurrently with Unit 6 for 15 weeks and culminates in a 2,500-word designed critical report. The unit has three core purposes:</p>
       <ol class="plain-list">
         <li><strong>Writing forms</strong> — expand and consolidate descriptive, reflective, and critical writing (building on Units 2 &amp; 3)</li>
@@ -502,7 +489,7 @@
       <h3>Workshop philosophy</h3>
       <p>Your Platform brief isn't just a project to complete — it's a doorway into conversations, ideas, and ways of thinking that can help you understand your own design practice. Platform Leaders have carefully chosen concepts, readings, and approaches that represent important conversations in Graphic Communication Design. By exploring these, you aren't just preparing for Unit 6 — you're discovering new ways to research, think about, and talk about your work.</p>
 
-      <p><a href="#programme">See the full 13-week programme →</a></p>
+      <p><a href="#programme">See the full 15-week programme →</a></p>
       <p><em>Note: Assessment is holistic and summative, taking place at the end of the unit. You'll receive formative feedback throughout from tutors and peers.</em></p>
     </section>
 
@@ -579,7 +566,7 @@
         <div class="pair"><div class="code">K202</div><div class="names">Anoushka &amp; Jessica</div></div>
       </div>
 
-      <h3 style="margin-top:28px;">Context</h3>
+      <h3 class="mt-lg">Context</h3>
       <p>Unit 5 runs for 15 weeks. Each workshop is designed for two groups (15+ each) working in one room with two tutors. Most sessions open with a shared intro, then split into parallel group work with your tutor pair.</p>
     </section>
 
@@ -591,12 +578,12 @@
       </div>
 
       <h3>Gathering &amp; Experimenting — Frameworks for Research</h3>
-      <p class="date" style="margin-bottom:18px; color:var(--purple-deep); font-weight:700;">2 October · 10:00–13:00</p>
+      <p class="session-date">2 October · 10:00–13:00</p>
 
       <p>Your Platform brief isn't just a project to complete — it's in conversation with theorists, practitioners, and ideas that can help you understand your developing design practice. This workshop is where you start building the research skills and critical vocabulary you'll need to write about your practice with precision.</p>
 
       <h3>Learning Outcomes for this workshop</h3>
-      <ul class="lo-list" style="margin-bottom: 24px;">
+      <ul class="lo-list">
         <li><span class="tag">🎯 LO1</span><span class="txt">Review, investigate and reflect on the development of your developing practice with reference to the body of work you are producing in your Unit 6 Platforms <span class="ac">(AC Enquiry)</span></span></li>
         <li><span class="tag">🎯 LO2</span><span class="txt">Explore and evaluate a range of historical and contemporary contexts of Graphic Communication Design, and investigate how your developing practice engages with climate, racial, and social justice <span class="ac">(AC Knowledge)</span></span></li>
       </ul>
@@ -620,36 +607,36 @@
         <div class="t-item shared">
           <div class="time">10.00–10.10</div>
           <div class="tbody">
-            <h4>Shared intro + frame <em style="color:var(--muted); font-weight:400;">(both tutors, all students)</em></h4>
+            <h4>Shared intro + frame <em class="t-note">(both tutors, all students)</em></h4>
             <p>Your tutors introduce the week's purpose: building research skills for your critical report.</p>
           </div>
         </div>
         <div class="t-item shared">
           <div class="time">10.10–10.30</div>
           <div class="tbody">
-            <h4>Shared pre-task discussion <em style="color:var(--muted); font-weight:400;">(both tutors, all students)</em></h4>
+            <h4>Shared pre-task discussion <em class="t-note">(both tutors, all students)</em></h4>
             <p>Quick group discussion of the Dirk Vis reading — what struck you, what's unclear. Allows time for all students to enter.</p>
           </div>
         </div>
-        <p class="materials-note" style="margin: 4px 0 8px;">— Split into groups: each tutor with their 15+ —</p>
+        <p class="materials-note materials-note--split">— Split into groups: each tutor with their 15+ —</p>
         <div class="t-item">
           <div class="time">10.30–10.40</div>
           <div class="tbody">
-            <h4>Start engaging with the reference <em style="color:var(--muted); font-weight:400;">(each group)</em></h4>
+            <h4>Start engaging with the reference <em class="t-note">(each group)</em></h4>
             <p>Your tutor introduces the reference from your Platform 1 brief and guides an initial discussion. This is a conversation to help you start thinking about it.</p>
           </div>
         </div>
         <div class="t-item">
           <div class="time">10.40–11.10</div>
           <div class="tbody">
-            <h4>Close reading <em style="color:var(--muted); font-weight:400;">(each group)</em></h4>
+            <h4>Close reading <em class="t-note">(each group)</em></h4>
             <p>Re-read the reference passage. Annotate key phrases. Identify one claim that surprises you. Note one connection to your own thinking. Your tutor circulates and listens.</p>
           </div>
         </div>
         <div class="t-item">
           <div class="time">11.10–12.00</div>
           <div class="tbody">
-            <h4>Build the constellation <em style="color:var(--muted); font-weight:400;">(each group, flexible 30–45 min)</em></h4>
+            <h4>Build the constellation <em class="t-note">(each group, flexible 30–45 min)</em></h4>
             <p>Map outwards from the reference: what concepts connect to it? What ideas branch from there? Use paper, Post-its, pen — whatever feels natural. Let the act of placing things near each other reveal what belongs together. Take a brief break if the group needs one. Your tutor will help manage the timing.</p>
           </div>
         </div>
@@ -661,7 +648,7 @@
             <p>✍️ <strong>Written reflection (15 min):</strong> write a 250-word reflection. Your reflection is written during the session when ideas are fresh. It's scaffolding for your final critical report. The thinking you do here forms the foundation for what you'll write later in the unit.</p>
             <p>If you're stuck, try: the concept you chose from the map and why it pulled you in / something that came up in conversation with someone else / how today's reference connects to something you already knew.</p>
             <div class="qcard"><div class="qlabel">Reflect on all of these</div>
-              <ul class="plain-list" style="margin-bottom:0;">
+              <ul class="plain-list flush-bottom">
                 <li>What concept from today's mapping connects most directly to how you think about design? Why does it matter? <em>LO1 + LO2</em></li>
                 <li>How does one of today's ideas challenge or confirm something you already believed about design? <em>LO1</em></li>
                 <li>What surprised you about how your group approached the mapping differently than you expected?</li>
@@ -685,11 +672,11 @@
         <p>Week 2 · 9 Oct · Questioning Your Sources — following Irene Albino's Critical Margins lecture: interrogating what texts claim, how they argue, and what they mean for your practice.</p>
       </div>
 
-      <h3 style="margin-top:32px;">Understanding the connection: Unit 5 ↔ Unit 6</h3>
+      <h3 class="mt-lg">Understanding the connection: Unit 5 ↔ Unit 6</h3>
       <p><em>Why Unit 5 research now, when Platform work happens in Unit 6?</em></p>
       <p>Exploring Platform 1 references in Weeks 1–5 builds the research literacy you need. In Week 6, you'll switch to Platform 2 and start analysing your own developing practice within that brief. Unit 5 is rehearsal. By Week 6, you're ready to analyse your own work with the same critical attention.</p>
 
-      <h3 id="week-1-faq" style="margin-top:32px;">FAQ</h3>
+      <h3 id="week-1-faq" class="mt-lg">FAQ</h3>
       <details class="faq-item">
         <summary>What if my Platform starting point doesn't seem relevant to my practice?</summary>
         <div class="a"><p>That's actually useful information. Exploring why something doesn't connect to your work helps you define what your practice is. Write about the gap. That's valid critical reflection.</p></div>
@@ -702,7 +689,7 @@
         <summary>What if I'm interested in concepts from other Platforms?</summary>
         <div class="a"><p>You can look at other Platform 1 briefs for inspiration during Weeks 1–5, but your primary research lens should be your own Platform 1. This keeps your research focused. In Week 6, you'll switch to Platform 2 anyway — likely a different Platform from your Platform 1 — so you'll get exposure to multiple Platform perspectives across the unit.</p></div>
       </details>
-      <p style="margin-top:16px;"><em>Research isn't about finding the right answer. It's about developing your own perspective through curiosity, exploration, and making connections others haven't seen yet.</em></p>
+      <p class="mt-md"><em>Research isn't about finding the right answer. It's about developing your own perspective through curiosity, exploration, and making connections others haven't seen yet.</em></p>
     </section>
 
     <!-- WEEK 2 -->
@@ -713,13 +700,13 @@
       </div>
 
       <h3>Gathering &amp; Experimenting — Critical Engagement with References</h3>
-      <p class="date" style="margin-bottom:18px; color:var(--purple-deep); font-weight:700;">9 October · 10:00–13:00</p>
+      <p class="session-date">9 October · 10:00–13:00</p>
 
       <p>This week you'll interrogate one of your three references from Week 1 with hard questions. What's being claimed? Who benefits? What can you use? What do you resist?</p>
       <p><em>Good Copy Bad Copy</em> showed you annotation happening in the world — as reframing, protest, reclamation. Yesterday Irene showed you how artists make annotation a critical and artistic practice. Now you're doing it with your sources. Annotation is one of your tools for critical writing. It's how you interrogate sources rather than receive them passively — how you position your own work in relation to historical and contemporary design practices.</p>
 
       <h3>Learning Outcomes for this workshop</h3>
-      <ul class="lo-list" style="margin-bottom: 24px;">
+      <ul class="lo-list">
         <li><span class="tag">🎯 LO1</span><span class="txt">Review and critically reflect on the development of your developing practice by actively interrogating sources that inform your Unit 6 Platforms <span class="ac">(AC Enquiry)</span></span></li>
         <li><span class="tag">🎯 LO2</span><span class="txt">Explore and evaluate a range of historical and contemporary contexts of Graphic Communication Design, and investigate how your developing practice engages with climate, racial, and social justice <span class="ac">(AC Knowledge)</span></span></li>
       </ul>
@@ -739,26 +726,26 @@
         <div class="t-item shared">
           <div class="time">10.00–10.10</div>
           <div class="tbody">
-            <h4>Shared intro + frame <em style="color:var(--muted); font-weight:400;">(both tutors, all students)</em></h4>
+            <h4>Shared intro + frame <em class="t-note">(both tutors, all students)</em></h4>
             <p>Your tutors introduce the week: interrogating texts is how you build critical thinking.</p>
           </div>
         </div>
         <div class="t-item shared">
           <div class="time">10.10–10.25</div>
           <div class="tbody">
-            <h4>Shared pre-task discussion <em style="color:var(--muted); font-weight:400;">(both tutors, all students)</em></h4>
+            <h4>Shared pre-task discussion <em class="t-note">(both tutors, all students)</em></h4>
             <p>Quick discussion of the Dirk Vis reading — what questions stood out to you? Allows time for all students to enter.</p>
           </div>
         </div>
-        <p class="materials-note" style="margin: 4px 0 8px;">— Split into groups: each tutor with their 15+ —</p>
+        <p class="materials-note materials-note--split">— Split into groups: each tutor with their 15+ —</p>
         <div class="t-item">
           <div class="time">10.25–10.35</div>
           <div class="tbody">
-            <h4>Start engaging with the text <em style="color:var(--muted); font-weight:400;">(each group)</em></h4>
+            <h4>Start engaging with the text <em class="t-note">(each group)</em></h4>
             <p>Your tutor introduces the text and the four questions framework. This is a brief conversation to help you start thinking about the material.</p>
             <div class="qcard">
               <div class="qlabel">Your four questions for interrogating this text</div>
-              <ul class="plain-list" style="margin-bottom:0;">
+              <ul class="plain-list flush-bottom">
                 <li>💭 <strong>Q1 — What does the text claim?</strong> Direct statements, main arguments, explicit ideas. Circle key claims, underline main arguments, mark however feels natural.</li>
                 <li>💭 <strong>Q2 — How does the argument work?</strong> How the author builds their case. Evidence, connections, logic. Draw arrows between ideas, highlight evidence.</li>
                 <li>💭 <strong>Q3 — What does this mean for your practice?</strong> Where your thinking aligns or resists the author's ideas. Write reactions in margins, use ✓ and ✗.</li>
@@ -771,41 +758,41 @@
         <div class="t-item">
           <div class="time">10.35–10.50</div>
           <div class="tbody">
-            <h4>Question 1: What does the text claim? <em style="color:var(--muted); font-weight:400;">(each group)</em></h4>
+            <h4>Question 1: What does the text claim? <em class="t-note">(each group)</em></h4>
             <p>Solo work: re-read and annotate for direct statements, main arguments, explicit ideas (15 min). Group discussion: what did you find? (5 min)</p>
           </div>
         </div>
         <div class="t-item">
           <div class="time">10.50–11.05</div>
           <div class="tbody">
-            <h4>Question 2: How does the argument work? <em style="color:var(--muted); font-weight:400;">(each group)</em></h4>
+            <h4>Question 2: How does the argument work? <em class="t-note">(each group)</em></h4>
             <p>Solo work: trace how evidence supports claims, where logic connects, assumptions (15 min). Group discussion: what did you find? (5 min)</p>
           </div>
         </div>
         <div class="t-item">
           <div class="time">11.05–11.20</div>
           <div class="tbody">
-            <h4>Break <em style="color:var(--muted); font-weight:400;">(flexible within each group)</em></h4>
+            <h4>Break <em class="t-note">(flexible within each group)</em></h4>
           </div>
         </div>
         <div class="t-item">
           <div class="time">11.20–11.35</div>
           <div class="tbody">
-            <h4>Question 3: What does this mean for your practice? <em style="color:var(--muted); font-weight:400;">(each group)</em></h4>
+            <h4>Question 3: What does this mean for your practice? <em class="t-note">(each group)</em></h4>
             <p>Solo work: explore where your thinking aligns or resists the author's ideas (15 min). Group discussion: what did you find? (5 min)</p>
           </div>
         </div>
         <div class="t-item">
           <div class="time">11.35–11.50</div>
           <div class="tbody">
-            <h4>Question 4: What questions remain unanswered? <em style="color:var(--muted); font-weight:400;">(each group)</em></h4>
+            <h4>Question 4: What questions remain unanswered? <em class="t-note">(each group)</em></h4>
             <p>Solo work: identify gaps, what extends beyond the text, what you'd investigate further (15 min). Group discussion: what did you find? (5 min)</p>
           </div>
         </div>
         <div class="t-item">
           <div class="time">11.50–12.10</div>
           <div class="tbody">
-            <h4>Cross-group viewing <em style="color:var(--muted); font-weight:400;">(both groups)</em></h4>
+            <h4>Cross-group viewing <em class="t-note">(both groups)</em></h4>
             <p>Your group briefly shares your annotations and what you discovered. What patterns do you notice across the two groups' readings?</p>
           </div>
         </div>
@@ -815,7 +802,7 @@
             <h4>Written reflection + exit recap</h4>
             <p>✍️ <strong>Written reflection (15 min):</strong> write a 250-word reflection. Your reflection is written during the session when ideas are fresh. It's scaffolding for your final critical report. The thinking you do here forms the foundation for what you'll write later in the unit.</p>
             <div class="qcard"><div class="qlabel">Reflect on all of these</div>
-              <ul class="plain-list" style="margin-bottom:0;">
+              <ul class="plain-list flush-bottom">
                 <li>Which of the four questions revealed something you hadn't noticed about the text before? What did it show you? <em>LO1 + LO2</em></li>
                 <li>Where do you stand in relation to the author's ideas? Which claims do you agree with, resist, or question? <em>LO1</em></li>
                 <li>How might you use this text's arguments or approach in thinking about your own Unit 6 practice? <em>LO1</em></li>
@@ -854,7 +841,7 @@
       <p>Kaiya Waerea's <em>Access Questions for Self-Publishing</em> framework invites you to make these decisions consciously, collectively, and with care. Not because there's a "right" answer, but because thinking carefully about access is how you practice critical design.</p>
 
       <h3>Learning Outcomes for this workshop</h3>
-      <ul class="lo-list" style="margin-bottom: 24px;">
+      <ul class="lo-list">
         <li><span class="tag">🎯 LO1</span><span class="txt">Review, investigate and reflect on the development of your practice with reference to the body of work you are producing in your Unit 6 Platforms <span class="ac">(AC Enquiry)</span></span></li>
         <li><span class="tag">🎯 LO3</span><span class="txt">An ability to produce a designed critical report that uses descriptive, reflective, and critical writing to contextualise your practice with reference to debates in the larger context of Graphic Communication Design <span class="ac">(AC Realisation)</span></span></li>
       </ul>
@@ -895,29 +882,29 @@
         <div class="t-item shared">
           <div class="time">10.00–10.10</div>
           <div class="tbody">
-            <h4>Shared intro + frame <em style="color:var(--muted); font-weight:400;">(both tutors, all 15+ students)</em></h4>
+            <h4>Shared intro + frame <em class="t-note">(both tutors, all 15+ students)</em></h4>
             <p>Your tutors introduce: publishing is a political act. Every decision — roles, cost, timeline, language, design, distribution — shapes whose voices are heard. You're making these decisions consciously and collectively today.</p>
           </div>
         </div>
         <div class="t-item shared">
           <div class="time">10.10–10.20</div>
           <div class="tbody">
-            <h4>Shared pre-task discussion <em style="color:var(--muted); font-weight:400;">(both tutors, all students)</em></h4>
+            <h4>Shared pre-task discussion <em class="t-note">(both tutors, all students)</em></h4>
             <p>Quick reflection on the Access Questions introduction. What surprised you? What felt uncomfortable? What does "access" mean in the context of your own report?</p>
           </div>
         </div>
-        <p class="materials-note" style="margin: 4px 0 8px;">— Split into subgroups: 4–5 people per group —</p>
+        <p class="materials-note materials-note--split">— Split into subgroups: 4–5 people per group —</p>
         <div class="t-item">
           <div class="time">10.20–10.25</div>
           <div class="tbody">
-            <h4>Choose your publisher collective name <em style="color:var(--muted); font-weight:400;">(each subgroup)</em></h4>
+            <h4>Choose your publisher collective name <em class="t-note">(each subgroup)</em></h4>
             <p>Spend 5 minutes as a group deciding on a publisher name — the name of your collective. Make it real: it represents your values and approach. Write it down.</p>
           </div>
         </div>
         <div class="t-item">
           <div class="time">10.25–11.50</div>
           <div class="tbody">
-            <h4>Cycle through assigned questions: engage → present back <em style="color:var(--muted); font-weight:400;">(each subgroup)</em></h4>
+            <h4>Cycle through assigned questions: engage → present back <em class="t-note">(each subgroup)</em></h4>
             <p>Your workshop follows a repeating pattern for each of your 2–3 assigned questions:</p>
             <ol class="plain-list">
               <li><strong>Engage with the question</strong> (20–25 min): your group reads the question and prompts, discusses, and makes notes on decisions.</li>
@@ -926,7 +913,7 @@
             <p>Repeat this cycle for each of your assigned questions.</p>
             <div class="qcard">
               <div class="qlabel">Question groupings</div>
-              <ul class="plain-list" style="margin-bottom:0;">
+              <ul class="plain-list flush-bottom">
                 <li><strong>Set A — Roles, Communication, Cost</strong> (Questions 1, 2, 3): governance &amp; relationship questions</li>
                 <li><strong>Set B — Time, Writing, Editing</strong> (Questions 4, 5, 6): process &amp; labour questions</li>
                 <li><strong>Set C — Design &amp; Production, Distribution</strong> (Questions 7, 8): output &amp; reach questions</li>
@@ -937,7 +924,7 @@
         <div class="t-item">
           <div class="time">12.10–12.30</div>
           <div class="tbody">
-            <h4>Synthesis + publication statement <em style="color:var(--muted); font-weight:400;">(each subgroup, working independently)</em></h4>
+            <h4>Synthesis + publication statement <em class="t-note">(each subgroup, working independently)</em></h4>
             <p>✍️ <strong>Write a 250-word publication statement</strong> for your collective, drawing on the decisions you made in your deep-dive questions, insights gained from other groups' presentations, and your collective's overall publishing philosophy and values. It's written during the session when ideas are fresh — scaffolding for your final critical report.</p>
             <p><strong>Exit recap:</strong> share one sentence from your publication statement. Your tutor weaves together how publishing decisions shape practice, why access matters, and how this connects to Unit 5 learning (LO1 + LO3).</p>
           </div>
@@ -952,7 +939,7 @@
       </div>
       <p class="materials-note">Materials: your draft critical report (written, designed, almost ready) and the Access Questions PDF.</p>
 
-      <h3 id="week-11-questions" style="margin-top:32px;">The 8 Access Questions</h3>
+      <h3 id="week-11-questions" class="mt-lg">The 8 Access Questions</h3>
       <p>These aren't problems to solve — they're prompts for thinking together about what you actually value. There's no "right" answer to any of them. You're making decisions for your publisher collective: not in the abstract, but specifically how your collective would publish, what matters to you, and what compromises you'd make and why.</p>
       <p>Capture tensions and contradictions as you go — if two people in your group disagree, write it down. Think practically: don't just say "we'd make it accessible," say how, what it would actually cost, and what you'd give up to make it happen.</p>
 
@@ -960,7 +947,7 @@
         <summary>💭 1. Roles &amp; Hierarchy</summary>
         <div class="a">
           <p>Publishing is always collaborative, even when you're self-publishing. Roles — designer, editor, writer, decision-maker, distributor — carry power. Who gets a say? Whose work is visible, whose invisible? These boundaries can enact dominant power dynamics or resist them. The question is whether your publishing roles reflect your values, or just reenact norms.</p>
-          <ul class="plain-list" style="margin-bottom:0;">
+          <ul class="plain-list flush-bottom">
             <li>List the main decisions your collective needs to make to publish your reports. For each one: who gets to decide? Are they volunteering or expected to do it? Do they want to?</li>
             <li>Are there roles some of you are doing invisibly or without being asked (organising meetings, giving feedback, making the final call)? Is everyone aware of these roles? Is it fair?</li>
             <li>If someone in your collective disagrees with a decision, what happens? Have you actually talked about how conflict gets resolved, or are you assuming everyone will just go along?</li>
@@ -971,7 +958,7 @@
         <summary>💭 2. Communication</summary>
         <div class="a">
           <p>One major barrier to publishing is prejudice, misunderstanding, and miscommunication — and these can happen in the process itself, not just the final product. Making assumptions about people's pronouns, capabilities, availability, or communication preferences is exclusionary. Practising asking these questions shows care for each other and the work.</p>
-          <ul class="plain-list" style="margin-bottom:0;">
+          <ul class="plain-list flush-bottom">
             <li>How do you know what you actually know about each person's needs and abilities? Have you asked, or assumed?</li>
             <li>What communication tools would work for everyone in your collective — email, in-person, voice note, visual diagram, written notes?</li>
             <li>How will you check in on whether people's needs are changing? How will you adapt?</li>
@@ -982,7 +969,7 @@
         <summary>💭 3. Cost &amp; Value</summary>
         <div class="a">
           <p>"Cost" isn't just money — energy is a cost, time is a cost, labour is a cost. For disabled people especially, energy and time can be the biggest expenses (27% of disabled adults in the UK live in poverty; it costs £583 more per month on average to be disabled). The same work costs different people different amounts — you need to be aware of who this leaves out, and try to minimise costs of all kinds, not just financial.</p>
-          <ul class="plain-list" style="margin-bottom:0;">
+          <ul class="plain-list flush-bottom">
             <li>If you were printing your reports (you're not, but imagine): who could afford to buy them? Who couldn't? What does that say about your values?</li>
             <li>What is the "value" you're trying to produce with your critical report — knowledge, representation, challenge? How does that shape who it's for?</li>
             <li>Are there hidden costs in your publishing process — unpaid labour, energy, time off work, equipment access? Who bears those costs?</li>
@@ -993,7 +980,7 @@
         <summary>💭 4. Time</summary>
         <div class="a">
           <p>Time is a formal component of publishing — deadlines, schedules, pacing — and these can be barriers caused by scheduling. A meeting at 3pm works for a student but not a parent; a tight deadline works for some people but excludes others. Different temporal structures suit different people. The question is whether you're choosing a timeline that's right for your project, or just reenacting norms.</p>
-          <ul class="plain-list" style="margin-bottom:0;">
+          <ul class="plain-list flush-bottom">
             <li>What's the realistic timeline for finishing and publishing your reports? Did everyone agree on this, or was it imposed?</li>
             <li>Do you know how long tasks will actually take different people — writing, editing, designing, deciding on distribution? Have you asked?</li>
             <li>If someone in your collective needs more time, what happens? Is there flexibility, or is the deadline fixed?</li>
@@ -1004,7 +991,7 @@
         <summary>💭 5. Writing</summary>
         <div class="a">
           <p>There are many ways we can feel othered by writing — especially in academic or design publishing contexts where there are "correct" ways to write, referencing styles, and norms. You might be carrying baggage from previous writing experiences, or have been told your way of thinking isn't "right." The question is which writing rules are actually helping your work, and which ones are just gates keeping people out.</p>
-          <ul class="plain-list" style="margin-bottom:0;">
+          <ul class="plain-list flush-bottom">
             <li>What writing pressures have you or your collective members faced — formal academic style, particular referencing, "objective" tone?</li>
             <li>Which of these rules actually serve your critical report? Which ones could you let go of?</li>
             <li>What if someone writes differently — more poetically, more fragmentary, more conversational? Does your publication accommodate that, or does it force conformity?</li>
@@ -1015,7 +1002,7 @@
         <summary>💭 6. Editing</summary>
         <div class="a">
           <p>Editing is where power dynamics become most explicit in publishing. Traditionally, editors have final say and can reject work that doesn't comply — but editing can also be custodial, supporting work to be its best by listening and connecting with the particular needs of the writer. The question is what kind of editor you want to be, and what kind of editorial relationship you want.</p>
-          <ul class="plain-list" style="margin-bottom:0;">
+          <ul class="plain-list flush-bottom">
             <li>Have you discussed what editing means in your collective? Do people understand what feedback they'll get and when?</li>
             <li>How will you give feedback that's helpful, not controlling? How will you listen to what writers actually need?</li>
             <li>If someone's way of writing is "unconventional," does your editorial process accept that, or try to "fix" it?</li>
@@ -1026,7 +1013,7 @@
         <summary>💭 7. Design &amp; Production</summary>
         <div class="a">
           <p>This is where most people think of "accessibility" — fonts, colours, spacing, contrast, navigation. But visual and material design carries ideology: the choices you make tell a story about whose work this is, who it's for, and what you believe about disability. When access is a last-minute add-on, it results in a diminished publication; when it's centred from the start, it becomes a site for generating new ways of thinking about communication.</p>
-          <ul class="plain-list" style="margin-bottom:0;">
+          <ul class="plain-list flush-bottom">
             <li>Who is your critical report designed for? What do they need to access it?</li>
             <li>What does your visual language — fonts, colours, layout, material form — communicate ideologically? Does it match your values?</li>
             <li>Are there design choices that would make your report more accessible but also more interesting, more beautiful, or more true to what you're saying?</li>
@@ -1037,7 +1024,7 @@
         <summary>💭 8. Distribution &amp; Press</summary>
         <div class="a">
           <p>Providing access in your report is one thing; making sure the people who need it actually know about it is another. Being honest about what you can't provide access for is equally important — if your event is up stairs, say so. Different distribution methods reach different people and allow different access. The question is where you want your work to be encountered, by whom, and how they'll know about it.</p>
-          <ul class="plain-list" style="margin-bottom:0;">
+          <ul class="plain-list flush-bottom">
             <li>How will your critical report be shared — digital only, printed, somewhere else? Where will people find it?</li>
             <li>Who are you hoping will read it? Where do those people actually look for work like this?</li>
             <li>What are you doing to make sure people know about your report and how to access it? Are you being clear about what you can and can't provide?</li>
@@ -1045,15 +1032,15 @@
         </div>
       </details>
 
-      <h3 style="margin-top:32px;">After the workshop</h3>
+      <h3 class="mt-lg">After the workshop</h3>
       <p>Your publication statement (250 words) should synthesise: the 2–3 questions your subgroup deep-dived into (your decisions, tensions discovered), insights from the other subgroups' presentations, and your collective's overall publishing philosophy and values. It's not a summary of the framework — it's your statement of why you make the publishing decisions you do. It becomes part of your critical report.</p>
       <div class="qcard">
         <div class="qlabel">Sample opening</div>
-        <p style="margin-bottom:0;"><em>"[Publisher Name] is a collective founded to publish [type of work]. We believe publishing is a political act. In this workshop, we interrogated how decisions around roles, communication, cost, timeline, writing, editing, design, and distribution shape whose voices are heard. Specifically, we deep-dived into [your assigned questions] and discovered that [key tension]. We acknowledge we cannot meet every access need; specifically, [example]. Here's why, and here's what we offer instead..."</em></p>
+        <p class="flush-bottom"><em>"[Publisher Name] is a collective founded to publish [type of work]. We believe publishing is a political act. In this workshop, we interrogated how decisions around roles, communication, cost, timeline, writing, editing, design, and distribution shape whose voices are heard. Specifically, we deep-dived into [your assigned questions] and discovered that [key tension]. We acknowledge we cannot meet every access need; specifically, [example]. Here's why, and here's what we offer instead..."</em></p>
       </div>
       <p><em>Not every access need can be met — that's not failure, it's information. What matters is honest acknowledgment and explanation. The best publication statements acknowledge contradictions.</em></p>
 
-      <h3 style="margin-top:32px;">References &amp; further reading</h3>
+      <h3 class="mt-lg">References &amp; further reading</h3>
       <p><strong>Framework:</strong> Kaiya Waerea, <em>Access Questions for Self-Publishing</em> (full PDF with interviews: Olivia Spring, Abi Palmer, D Mortimer)</p>
       <ul class="plain-list">
         <li><em>10 Principles of Disability Justice</em> — Disability Justice Collective</li>
@@ -1074,18 +1061,21 @@
 
 <footer>
   <div class="wrap">
-    <p style="margin:0;">Unit 5: GCD Practices 03 — Workshop Sequence 2025–26.</p>
+    <p>Unit 5: GCD Practices 03 — Workshop Sequence 2025–26.</p>
   </div>
 </footer>
 
 <script>
-  document.getElementById('printBtn').addEventListener('click', function(){
-    window.print();
-  });
+  (function(){
+    document.getElementById('printBtn').addEventListener('click', function(){
+      window.print();
+    });
+  })();
 
   (function(){
-    // Full 13-week programme. Weeks 4-13 aren't dated yet — add start/end
-    // here once confirmed and the current-week highlight will pick them up.
+    // Full 15-week programme. Weeks 4-10 and 12-15 aren't dated yet — add
+    // start/end here once confirmed and the Current Week card will pick
+    // them up automatically (see windowStart/matchedIndex logic below).
     var weeks = [
       // "image" is optional — set it to a real photo path (e.g. "images/week1.jpg")
       // and the card will use it instead of the placeholder texture, auto-tinted
@@ -1166,7 +1156,9 @@
   })();
 
   (function(){
-    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+    // Scrollspy: highlights the Contents link for whichever section is
+    // currently in view, and keeps it in sync on scroll/resize/click.
+    var links = Array.from(document.querySelectorAll('.toc a[href^="#"]'));
     var items = links.map(function(link){
       var el = document.getElementById(link.getAttribute('href').slice(1));
       return el ? { link: link, el: el } : null;
@@ -1178,6 +1170,9 @@
     }
 
     function updateActive(){
+      // 140px trigger offset: a section counts as "current" once its top
+      // has scrolled up near the top of the viewport, not only once it's
+      // exactly at y=0 — keeps the highlight from lagging behind the read.
       var triggerY = window.scrollY + 140;
       var current = items[0];
       for (var i = 0; i < items.length; i++){
@@ -1193,6 +1188,7 @@
       link.addEventListener('click', function(){ setActive(link); });
     });
 
+    // rAF-throttled: avoids running updateActive on every scroll event.
     var ticking = false;
     window.addEventListener('scroll', function(){
       if (!ticking){
