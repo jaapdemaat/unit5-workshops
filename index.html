@@ -395,8 +395,12 @@
   .faq-item[open] summary::after{ content:"–"; }
   .faq-item .a{ padding: 0 16px 16px; }
 
-  /* ---------- Tutor groupings ---------- */
-  .pair-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 12px; }
+  /* ---------- Tutor groupings ----------
+     Fixed column counts (not auto-fit) so the last row never ends up
+     as a single lonely box - it breaks predictably at 3, then 2, then 1. */
+  .pair-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 700px){ .pair-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 420px){ .pair-grid{ grid-template-columns: 1fr; } }
   .pair{
     border: 1px solid var(--border);
     border-radius: 10px;
