@@ -147,6 +147,35 @@
   }
   h3{ font-size: 1.15rem; margin: 0 0 10px; color: var(--ink); }
 
+  /* ---------- Week heading thumbnail ---------- */
+  .week-head{ display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .week-head .section-title{ margin: 0; }
+  .week-thumb{
+    flex: 0 0 auto;
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    background: var(--purple-tint-2);
+  }
+  .week-thumb img{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    mix-blend-mode: luminosity;
+  }
+  .week-thumb::after{
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 100%);
+    mix-blend-mode: color;
+  }
+  @media (max-width: 500px){
+    .week-thumb{ width: 56px; height: 56px; }
+  }
+
   /* ---------- Current week cards ----------
      .visual applies a CSS duotone: drop any <img> (or <svg>) in as the
      content and it auto-tints to the site's purple via blend modes —
@@ -541,7 +570,10 @@
 
     <!-- WEEK 1 -->
     <section id="week-1">
-      <h2 class="section-title">Week 1 — Expanding Research</h2>
+      <div class="week-head">
+        <div class="week-thumb"><img src="images/week1.jpg" alt=""></div>
+        <h2 class="section-title">Week 1 — Expanding Research</h2>
+      </div>
 
       <h3>Gathering &amp; Experimenting — Frameworks for Research</h3>
       <p class="date" style="margin-bottom:18px; color:var(--purple-deep); font-weight:700;">2 October · 10:00–13:00</p>
@@ -660,7 +692,10 @@
 
     <!-- WEEK 2 -->
     <section id="week-2">
-      <h2 class="section-title">Week 2 — Questioning Your Sources</h2>
+      <div class="week-head">
+        <div class="week-thumb"><img src="images/week2.jpg" alt=""></div>
+        <h2 class="section-title">Week 2 — Questioning Your Sources</h2>
+      </div>
 
       <h3>Gathering &amp; Experimenting — Critical Engagement with References</h3>
       <p class="date" style="margin-bottom:18px; color:var(--purple-deep); font-weight:700;">9 October · 10:00–13:00</p>
@@ -793,10 +828,13 @@
 
     <!-- WEEK 11 -->
     <section id="week-11">
-      <h2 class="section-title">Week 11 — Publishing Your Practice</h2>
+      <div class="week-head">
+        <div class="week-thumb"><img src="images/week11.jpg" alt=""></div>
+        <h2 class="section-title">Week 11 — Publishing Your Practice</h2>
+      </div>
 
       <h3>Why this matters</h3>
-      <p>Your critical report is finished. But finishing isn't publishing. Publishing is the moment when your private thinking becomes public — and every decision you make affects who can access and engage with your work.</p>
+      <p>Your critical report is near finished. But finishing isn't publishing. Publishing is the moment when your private thinking becomes public — and every decision you make affects who can access and engage with your work.</p>
       <p>Who gets a say in how your work is presented? How much does it cost to access? What time do people have to read it? What language is it written in? Who edited it? How does it look? Where will people find it? These aren't technical questions. They're decisions about power — decisions about whose voices get amplified and whose get silenced.</p>
       <p>Kaiya Waerea's <em>Access Questions for Self-Publishing</em> framework invites you to make these decisions consciously, collectively, and with care. Not because there's a "right" answer, but because thinking carefully about access is how you practice critical design.</p>
 
