@@ -193,13 +193,22 @@
     margin: 0 0 24px;
   }
 
-  /* ---------- Current week cards ---------- */
+  /* ---------- Current week cards ----------
+     Horizontally scrollable row (all 13 weeks), snapping one card at a
+     time, with click-to-scroll arrows on wider screens. Touch devices
+     just swipe, so the arrows hide below 700px. */
+  .current-week-scroller{ position: relative; }
   .current-week-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
     gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 4px;
   }
   .current-week-card{
+    flex: 0 0 260px;
+    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border);
@@ -239,6 +248,30 @@
   .current-week-card .cw-tags span{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); color: var(--purple-deep); }
   .current-week-card .cw-date{ font-size: 0.8rem; color: var(--muted); }
   .current-week-card .cw-link{ font-size: 0.85rem; font-weight: 600; margin-top: 4px; }
+
+  .cw-nav{
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--purple-deep);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cw-nav:hover{ border-color: var(--purple); }
+  .cw-nav--prev{ left: 4px; }
+  .cw-nav--next{ right: 4px; }
+  @media (max-width: 700px){ .cw-nav{ display: none; } }
 
   /* ---------- Learning outcomes ---------- */
   .lo-list{ list-style: none; margin:0 0 24px; padding:0; display:flex; flex-direction:column; gap:12px; }
@@ -485,7 +518,11 @@
     <!-- CURRENT WEEK -->
     <section id="current-week">
       <h2 class="section-title">Current Week</h2>
-      <div class="current-week-grid" id="currentWeekSlot"></div>
+      <div class="current-week-scroller">
+        <button type="button" class="cw-nav cw-nav--prev" aria-label="Scroll to earlier weeks">‹</button>
+        <div class="current-week-grid" id="currentWeekSlot"></div>
+        <button type="button" class="cw-nav cw-nav--next" aria-label="Scroll to later weeks">›</button>
+      </div>
       <noscript>
         <p>See the <a href="#programme">full 13-week programme</a> below.</p>
       </noscript>
@@ -1394,17 +1431,29 @@
 
       var matchedIndex = (CURRENT_WEEK >= 1 && CURRENT_WEEK <= weeks.length) ? CURRENT_WEEK - 1 : -1;
 
-      // Window start: the matched week if we have one, otherwise the
-      // start of the programme — but only the matched week ever gets
-      // a badge, never the fallback.
-      var windowStart = matchedIndex !== -1 ? matchedIndex : 0;
-      var startIndex = Math.min(Math.max(windowStart, 0), weeks.length - 3);
-      var windowWeeks = weeks.slice(startIndex, startIndex + 3);
-
-      slot.innerHTML = windowWeeks.map(function(w){
+      // Render every week in one scrollable row — only the matched week
+      // (if any) gets the "This week" badge.
+      slot.innerHTML = weeks.map(function(w){
         var label = (matchedIndex !== -1 && w.n - 1 === matchedIndex) ? 'This week' : '';
         return cardHTML(w, label);
       }).join('');
+
+      // If a current week is set, scroll it into view on load.
+      if (matchedIndex !== -1 && slot.children[matchedIndex]) {
+        slot.children[matchedIndex].scrollIntoView({ behavior: 'instant', inline: 'start', block: 'nearest' });
+      }
+
+      // Click-to-scroll arrows (hidden on touch-sized screens via CSS —
+      // swipe works fine there without them).
+      var prevBtn = document.querySelector('.cw-nav--prev');
+      var nextBtn = document.querySelector('.cw-nav--next');
+      function scrollByCard(direction){
+        var card = slot.querySelector('.current-week-card');
+        var step = card ? card.getBoundingClientRect().width + 22 : 280;
+        slot.scrollBy({ left: direction * step, behavior: 'smooth' });
+      }
+      if (prevBtn) prevBtn.addEventListener('click', function(){ scrollByCard(-1); });
+      if (nextBtn) nextBtn.addEventListener('click', function(){ scrollByCard(1); });
     }
   })();
 
