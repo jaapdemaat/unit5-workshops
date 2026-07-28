@@ -15,17 +15,21 @@
     --purple-tint-2: #DDE5FC;
 
     /* Phase colours: Phase 1 (Research Frameworks) uses the site's core
-       purple above; Phase 2 (Positioning) and Phase 3 (Critical Practice)
-       get their own hue from the same blue-violet family, so the three
-       read as a set. */
+       purple above; Phase 2 (Positioning), Phase 3 (Critical Practice)
+       and Phase 4 (Weeks 14-15 / EOTO, post-submission) get their own
+       hue from the same blue-violet family, so the set reads together. */
     --phase2: #6305FF;
     --phase2-deep: #561BB9;
     --phase2-tint: #F4EDFF;
     --phase2-tint-2: #E9DDFC;
-    --phase3: #1306FF;
-    --phase3-deep: #231BBA;
-    --phase3-tint: #EEEDFF;
-    --phase3-tint-2: #DEDDFC;
+    --phase3: #4705B5;
+    --phase3-deep: #391476;
+    --phase3-tint: #F4EDFF;
+    --phase3-tint-2: #E8DDFC;
+    --phase4: #0597FF;
+    --phase4-deep: #1B77B9;
+    --phase4-tint: #EDF8FF;
+    --phase4-tint-2: #DDEFFC;
 
     --ink: #16151f;
     --muted: #5c5a72;
@@ -162,6 +166,8 @@
   .toc .toc-phase-list--phase2{ border-left-color: var(--phase2-tint-2); }
   .toc-phase-label--phase3{ color: var(--phase3-deep); }
   .toc .toc-phase-list--phase3{ border-left-color: var(--phase3-tint-2); }
+  .toc-phase-label--phase4{ color: var(--phase4-deep); }
+  .toc .toc-phase-list--phase4{ border-left-color: var(--phase4-tint-2); }
 
   main.content{ min-width: 0; }
 
@@ -280,6 +286,7 @@
   .current-week-card .cw-tags span{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); color: var(--purple-deep); }
   .current-week-card .cw-tags--phase2 span{ text-decoration-color: var(--phase2-tint-2); color: var(--phase2-deep); }
   .current-week-card .cw-tags--phase3 span{ text-decoration-color: var(--phase3-tint-2); color: var(--phase3-deep); }
+  .current-week-card .cw-tags--phase4 span{ text-decoration-color: var(--phase4-tint-2); color: var(--phase4-deep); }
   .current-week-card .cw-date{ font-size: 0.8rem; color: var(--muted); }
   .current-week-card .cw-link{ font-size: 0.85rem; font-weight: 600; margin-top: 4px; }
 
@@ -359,6 +366,7 @@
   }
   .chip--phase2{ background: var(--phase2-tint); color: var(--phase2-deep); }
   .chip--phase3{ background: var(--phase3-tint); color: var(--phase3-deep); }
+  .chip--phase4{ background: var(--phase4-tint); color: var(--phase4-deep); }
 
   /* ---------- Roadmap ---------- */
   .roadmap{ display:flex; flex-direction:column; }
@@ -383,6 +391,9 @@
   .roadmap-item--phase3 .wk{ color: var(--phase3-deep); }
   a.roadmap-item--phase3 .rtitle{ text-decoration-color: var(--phase3-tint-2); }
   a.roadmap-item--phase3:hover .rtitle{ color: var(--phase3-deep); }
+  .roadmap-item--phase4 .wk{ color: var(--phase4-deep); }
+  a.roadmap-item--phase4 .rtitle{ text-decoration-color: var(--phase4-tint-2); }
+  a.roadmap-item--phase4:hover .rtitle{ color: var(--phase4-deep); }
 
   /* ---------- Callout ---------- */
   .callout{
@@ -445,6 +456,8 @@
   .phase-intro--phase2 .phase-label, .phase-intro--phase2 h3{ color: var(--phase2-deep); }
   .phase-intro--phase3{ background: var(--phase3-tint); border-left-color: var(--phase3); }
   .phase-intro--phase3 .phase-label, .phase-intro--phase3 h3{ color: var(--phase3-deep); }
+  .phase-intro--phase4{ background: var(--phase4-tint); border-left-color: var(--phase4); }
+  .phase-intro--phase4 .phase-label, .phase-intro--phase4 h3{ color: var(--phase4-deep); }
 
   /* ---------- Pending week placeholder ----------
      Neutral dashed style for weeks that don't have full content yet,
@@ -454,6 +467,53 @@
     background: transparent;
   }
   .callout--pending .label{ background: var(--paper); color: var(--muted); }
+
+  /* ---------- Phase-scoped week sections ----------
+     Apply .week-phase--phase2 / --phase3 / --phase4 to a week's
+     <section> (or the EOTO section) and every purple accent inside it
+     - heading, callouts, LO tags, schedule times, qcards, FAQ icons,
+     video play buttons - recolours to match that week's phase.
+     Tutor-note callouts are excluded on purpose; they stay black/ink
+     regardless of phase, since that's a separate "tutor only" signal. */
+  .week-phase--phase2 .week-title,
+  .week-phase--phase2 .session-date,
+  .week-phase--phase2 .callout:not(.tutor-note) .label,
+  .week-phase--phase2 .lo-list .tag,
+  .week-phase--phase2 .t-item .time,
+  .week-phase--phase2 .qcard .qlabel,
+  .week-phase--phase2 .video-poster .play-icon,
+  .week-phase--phase2 .faq-item summary::after{ color: var(--phase2-deep); }
+  .week-phase--phase2 .callout:not(.tutor-note){ border-left-color: var(--phase2); background: var(--phase2-tint); }
+  .week-phase--phase2 .lo-list li,
+  .week-phase--phase2 .t-item.shared,
+  .week-phase--phase2 .qcard{ background: var(--phase2-tint); }
+
+  .week-phase--phase3 .week-title,
+  .week-phase--phase3 .session-date,
+  .week-phase--phase3 .callout:not(.tutor-note) .label,
+  .week-phase--phase3 .lo-list .tag,
+  .week-phase--phase3 .t-item .time,
+  .week-phase--phase3 .qcard .qlabel,
+  .week-phase--phase3 .video-poster .play-icon,
+  .week-phase--phase3 .faq-item summary::after{ color: var(--phase3-deep); }
+  .week-phase--phase3 .callout:not(.tutor-note){ border-left-color: var(--phase3); background: var(--phase3-tint); }
+  .week-phase--phase3 .lo-list li,
+  .week-phase--phase3 .t-item.shared,
+  .week-phase--phase3 .qcard{ background: var(--phase3-tint); }
+
+  .week-phase--phase4 .week-title,
+  .week-phase--phase4 .section-title,
+  .week-phase--phase4 .session-date,
+  .week-phase--phase4 .callout:not(.tutor-note) .label,
+  .week-phase--phase4 .lo-list .tag,
+  .week-phase--phase4 .t-item .time,
+  .week-phase--phase4 .qcard .qlabel,
+  .week-phase--phase4 .video-poster .play-icon,
+  .week-phase--phase4 .faq-item summary::after{ color: var(--phase4-deep); }
+  .week-phase--phase4 .callout:not(.tutor-note){ border-left-color: var(--phase4); background: var(--phase4-tint); }
+  .week-phase--phase4 .lo-list li,
+  .week-phase--phase4 .t-item.shared,
+  .week-phase--phase4 .qcard{ background: var(--phase4-tint); }
 
   /* ---------- Tutor-note toggle ----------
      Facilitator's notes are hidden by default (student view). Toggling
@@ -665,7 +725,11 @@
             <li><a href="#week-13">Week 13: Open Studio</a></li>
           </ul>
         </li>
-        <li><a href="#eoto">Post-Submission: EOTO</a></li>
+        <li><span class="toc-phase-label toc-phase-label--phase4">Weeks 14–15</span>
+          <ul class="toc-phase-list toc-phase-list--phase4">
+            <li><a href="#eoto">Post-Submission: EOTO</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </aside>
@@ -1182,7 +1246,7 @@
     </div>
 
     <!-- WEEKS 6-7 (IN DEVELOPMENT) -->
-    <section id="weeks-6-7">
+    <section id="weeks-6-7" class="week-phase--phase2">
       <div class="callout callout--pending">
         <span class="label">Weeks 6–7 · in development</span>
         <p>Weeks 6 and 7 complete the start of Phase 2, establishing the pedagogical bridge where students transition from investigating external Platform 1 references to analysing their own Platform 2 practice. These weeks frame the positioning work essential before the midpoint review in Week 8.</p>
@@ -1190,7 +1254,7 @@
     </section>
 
     <!-- WEEK 8 -->
-    <section id="week-8">
+    <section id="week-8" class="week-phase--phase2">
       <h2 class="week-title">W8: Midpoint Peer Review</h2>
 
       <div class="callout tutor-note">
@@ -1338,7 +1402,7 @@
     </div>
 
     <!-- WEEK 9 -->
-    <section id="week-9">
+    <section id="week-9" class="week-phase--phase3">
       <h2 class="week-title">W9: CRL — Mapping Connections in Space (Part 1)</h2>
 
       <div class="callout tutor-note">
@@ -1483,7 +1547,7 @@
     </section>
 
     <!-- WEEK 10 -->
-    <section id="week-10">
+    <section id="week-10" class="week-phase--phase3">
       <h2 class="week-title">W10: CRL — Mapping Connections in Space (Part 2)</h2>
 
       <div class="callout tutor-note">
@@ -1632,7 +1696,7 @@
     </section>
 
     <!-- WEEK 11 -->
-    <section id="week-11">
+    <section id="week-11" class="week-phase--phase3">
       <h2 class="week-title">W11: Publishing Your Practice</h2>
 
       <div class="callout tutor-note">
@@ -1891,7 +1955,7 @@
     </section>
 
     <!-- WEEK 12 (IN DEVELOPMENT) -->
-    <section id="week-12">
+    <section id="week-12" class="week-phase--phase3">
       <div class="callout callout--pending">
         <span class="label">Week 12 · in development</span>
         <p>Week 12 continues Phase 3, providing dedicated time for students to refine their critical reports, incorporate feedback from earlier sessions, and prepare their publishing explorations for the Open Studio presentation.</p>
@@ -1899,7 +1963,7 @@
     </section>
 
     <!-- WEEK 13 -->
-    <section id="week-13">
+    <section id="week-13" class="week-phase--phase3">
       <h2 class="week-title">W13: Open Studio</h2>
 
       <div class="callout tutor-note">
@@ -1982,7 +2046,7 @@
     </section>
 
     <!-- EOTO (POST-SUBMISSION, WEEKS 14-15) -->
-    <section id="eoto">
+    <section id="eoto" class="week-phase--phase4">
       <h2 class="section-title">Post-Submission: Each One Teach One</h2>
       <p>After your critical report hand-in, Unit 5 continues with a two-part workshop run by Kira Salter: <strong>Each One Teach One (EOTO)</strong>, on Wednesdays. This sits outside the core 13-week programme above — a chance to discover and share your own skills through design thinking, once the report is submitted.</p>
 
