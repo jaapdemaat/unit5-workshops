@@ -650,6 +650,36 @@
   .pair .code{ font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--purple-deep); letter-spacing: 0.05em; }
   .pair .names{ font-weight: 600; margin-top: 2px; }
 
+  /* ---------- Tutor avatars ----------
+     Small duotone avatar per tutor, same recipe as the Week by Week
+     cards - drop a real photo (<img>) into .avatar and it auto-tints
+     to the site purple. Until a photo exists, .avatar-placeholder
+     stands in as a mid-tone grey so the white initials stay readable,
+     mirroring the "W1" pattern on the week cards. */
+  .pair-avatars{ display: flex; gap: 8px; margin-bottom: 10px; }
+  .avatar{
+    width: 52px; height: 52px;
+    border-radius: 999px;
+    flex: 0 0 auto;
+  }
+  .avatar-placeholder{
+    position: absolute; inset: 0;
+    background: #8a8a8a;
+    filter: grayscale(1) contrast(1.05);
+    mix-blend-mode: luminosity;
+  }
+  .avatar .initials{
+    position: absolute; inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: -0.02em;
+  }
+
   .materials-note{
     font-size: 0.85rem;
     color: var(--muted);
@@ -866,11 +896,41 @@
     <section id="tutor-groupings">
       <h2 class="section-title">Tutor Groupings</h2>
       <div class="pair-grid">
-        <div class="pair"><div class="code">F204 · I&amp;S</div><div class="names">Amrit &amp; Kira</div></div>
-        <div class="pair"><div class="code">K205 · T&amp;M</div><div class="names">Mike &amp; Rachel</div></div>
-        <div class="pair"><div class="code">K203 · S&amp;I</div><div class="names">Sakis &amp; Amandine</div></div>
-        <div class="pair"><div class="code">K204 · E&amp;E</div><div class="names">Odira &amp; Andrea</div></div>
-        <div class="pair"><div class="code">K202 · N&amp;V</div><div class="names">Anoushka &amp; Jessica</div></div>
+        <div class="pair">
+          <div class="pair-avatars">
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">AM</span></div>
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">KI</span></div>
+          </div>
+          <div class="code">F204 · I&amp;S</div><div class="names">Amrit &amp; Kira</div>
+        </div>
+        <div class="pair">
+          <div class="pair-avatars">
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">MI</span></div>
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">RA</span></div>
+          </div>
+          <div class="code">K205 · T&amp;M</div><div class="names">Mike &amp; Rachel</div>
+        </div>
+        <div class="pair">
+          <div class="pair-avatars">
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">SA</span></div>
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">AM</span></div>
+          </div>
+          <div class="code">K203 · S&amp;I</div><div class="names">Sakis &amp; Amandine</div>
+        </div>
+        <div class="pair">
+          <div class="pair-avatars">
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">OD</span></div>
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">AN</span></div>
+          </div>
+          <div class="code">K204 · E&amp;E</div><div class="names">Odira &amp; Andrea</div>
+        </div>
+        <div class="pair">
+          <div class="pair-avatars">
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">AN</span></div>
+            <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">JE</span></div>
+          </div>
+          <div class="code">K202 · N&amp;V</div><div class="names">Anoushka &amp; Jessica</div>
+        </div>
       </div>
 
       <h3 class="mt-lg">Additional Support</h3>
