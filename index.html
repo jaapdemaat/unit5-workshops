@@ -13,6 +13,20 @@
     --purple-deep: #3B2ED1;
     --purple-tint: #EFEDFF;
     --purple-tint-2: #E1DDFC;
+
+    /* Phase colours: Phase 1 (Research Frameworks) uses the site's core
+       purple above; Phase 2 (Positioning) and Phase 3 (Critical Practice)
+       get their own hue, same tone/saturation family, so the three read
+       as a set. */
+    --phase2: #D9642C;
+    --phase2-deep: #A94A1D;
+    --phase2-tint: #FCECE2;
+    --phase2-tint-2: #F7D4BE;
+    --phase3: #0E8F7D;
+    --phase3-deep: #0B6F62;
+    --phase3-tint: #E1F5F2;
+    --phase3-tint-2: #C2E9E2;
+
     --ink: #16151f;
     --muted: #5c5a72;
     --border: #e2ddf7;
@@ -132,6 +146,23 @@
   .toc ul ul a.active{ color: var(--purple-deep); }
   .toc .count{ color: var(--muted); font-weight: 400; }
 
+  /* ---------- Contents: phase groups ----------
+     Weeks are grouped under their phase in the sidebar, each with a
+     coloured label and matching left rule, mirroring the phase-intro
+     banners in the main content. */
+  .toc-phase-label{
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--purple-deep);
+  }
+  .toc .toc-phase-list{ border-left: 2px solid var(--purple-tint-2); }
+  .toc-phase-label--phase2{ color: var(--phase2-deep); }
+  .toc .toc-phase-list--phase2{ border-left-color: var(--phase2-tint-2); }
+  .toc-phase-label--phase3{ color: var(--phase3-deep); }
+  .toc .toc-phase-list--phase3{ border-left-color: var(--phase3-tint-2); }
+
   main.content{ min-width: 0; }
 
   section{ padding: 44px 0; border-top: 1px solid var(--border); }
@@ -247,6 +278,8 @@
   .current-week-card .cw-title{ font-weight: 700; font-size: 1.05rem; color: var(--ink); }
   .current-week-card .cw-tags{ font-size: 0.85rem; }
   .current-week-card .cw-tags span{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); color: var(--purple-deep); }
+  .current-week-card .cw-tags--phase2 span{ text-decoration-color: var(--phase2-tint-2); color: var(--phase2-deep); }
+  .current-week-card .cw-tags--phase3 span{ text-decoration-color: var(--phase3-tint-2); color: var(--phase3-deep); }
   .current-week-card .cw-date{ font-size: 0.8rem; color: var(--muted); }
   .current-week-card .cw-link{ font-size: 0.85rem; font-weight: 600; margin-top: 4px; }
 
@@ -313,7 +346,9 @@
   .meta-line{ font-size: 0.85rem; color: var(--muted); margin-bottom: 18px; }
   .meta-line strong{ color: var(--ink); }
 
-  /* ---------- Chips ---------- */
+  /* ---------- Chips ----------
+     Default chip is Phase 1 (purple). .chip--phase2 / .chip--phase3
+     recolour it for weeks that belong to the other two phases. */
   .chip{
     background: var(--purple-tint);
     color: var(--purple-deep);
@@ -322,6 +357,8 @@
     border-radius: 999px;
     padding: 7px 14px;
   }
+  .chip--phase2{ background: var(--phase2-tint); color: var(--phase2-deep); }
+  .chip--phase3{ background: var(--phase3-tint); color: var(--phase3-deep); }
 
   /* ---------- Roadmap ---------- */
   .roadmap{ display:flex; flex-direction:column; }
@@ -340,6 +377,12 @@
   .roadmap-item .chip{ flex: 0 0 auto; padding: 4px 12px; font-size: 0.76rem; }
   a.roadmap-item .rtitle{ text-decoration: underline; text-decoration-color: var(--purple-tint-2); }
   a.roadmap-item:hover .rtitle{ color: var(--purple-deep); }
+  .roadmap-item--phase2 .wk{ color: var(--phase2-deep); }
+  a.roadmap-item--phase2 .rtitle{ text-decoration-color: var(--phase2-tint-2); }
+  a.roadmap-item--phase2:hover .rtitle{ color: var(--phase2-deep); }
+  .roadmap-item--phase3 .wk{ color: var(--phase3-deep); }
+  a.roadmap-item--phase3 .rtitle{ text-decoration-color: var(--phase3-tint-2); }
+  a.roadmap-item--phase3:hover .rtitle{ color: var(--phase3-deep); }
 
   /* ---------- Callout ---------- */
   .callout{
@@ -362,6 +405,55 @@
     margin-bottom: 10px;
   }
   .callout p{ color: var(--ink); }
+
+  /* ---------- Phase intro banners ----------
+     Section dividers that open each of the 3 phases. Same shape as a
+     callout but larger, with its own colour per phase so the three
+     phases stay visually distinct while scrolling. */
+  .phase-intro{
+    border-left: 4px solid var(--purple);
+    background: var(--purple-tint);
+    border-radius: 0 12px 12px 0;
+    padding: 26px 28px;
+    margin-bottom: 32px;
+  }
+  .phase-intro .phase-label{
+    display:inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--purple-deep);
+    background: var(--paper);
+    border-radius: 999px;
+    padding: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .phase-intro h3{
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    color: var(--purple-deep);
+    margin: 0 0 4px;
+  }
+  .phase-intro .phase-sub{
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  .phase-intro p{ color: var(--ink); margin-bottom: 0; }
+  .phase-intro--phase2{ background: var(--phase2-tint); border-left-color: var(--phase2); }
+  .phase-intro--phase2 .phase-label, .phase-intro--phase2 h3{ color: var(--phase2-deep); }
+  .phase-intro--phase3{ background: var(--phase3-tint); border-left-color: var(--phase3); }
+  .phase-intro--phase3 .phase-label, .phase-intro--phase3 h3{ color: var(--phase3-deep); }
+
+  /* ---------- Pending week placeholder ----------
+     Neutral dashed style for weeks that don't have full content yet,
+     so they read as "not written" rather than as real workshop content. */
+  .callout--pending{
+    border-left: 3px dashed var(--muted);
+    background: transparent;
+  }
+  .callout--pending .label{ background: var(--paper); color: var(--muted); }
 
   /* ---------- Tutor-note toggle ----------
      Facilitator's notes are hidden by default (student view). Toggling
@@ -543,21 +635,36 @@
             <li><a href="#tutor-groupings">Tutor Groupings <span class="count">(5)</span></a></li>
           </ul>
         </li>
-        <li><a href="#week-1">Week 1: Expanding Research <span class="count">(7)</span></a>
-          <ul>
-            <li><a href="#week-1-faq">FAQ <span class="count">(3)</span></a></li>
+        <li><span class="toc-phase-label">Phase 1: Research Frameworks</span>
+          <ul class="toc-phase-list">
+            <li><a href="#week-1">Week 1: Expanding Research <span class="count">(7)</span></a>
+              <ul>
+                <li><a href="#week-1-faq">FAQ <span class="count">(3)</span></a></li>
+              </ul>
+            </li>
+            <li><a href="#week-2">Week 2: Questioning Your Sources <span class="count">(11)</span></a></li>
+            <li><a href="#weeks-3-5">Weeks 3–5 <span class="count">in development</span></a></li>
           </ul>
         </li>
-        <li><a href="#week-2">Week 2: Questioning Your Sources <span class="count">(11)</span></a></li>
-        <li><a href="#week-8">Week 8: Midpoint Peer Review <span class="count">(6)</span></a></li>
-        <li><a href="#week-9">Week 9: Mapping Connections (Part 1) <span class="count">(8)</span></a></li>
-        <li><a href="#week-10">Week 10: Mapping Connections (Part 2) <span class="count">(8)</span></a></li>
-        <li><a href="#week-11">Week 11: Publishing Your Practice <span class="count">(6)</span></a>
-          <ul>
-            <li><a href="#week-11-questions">The 8 Access Questions</a></li>
+        <li><span class="toc-phase-label toc-phase-label--phase2">Phase 2: Positioning</span>
+          <ul class="toc-phase-list toc-phase-list--phase2">
+            <li><a href="#weeks-6-7">Weeks 6–7 <span class="count">in development</span></a></li>
+            <li><a href="#week-8">Week 8: Midpoint Peer Review <span class="count">(6)</span></a></li>
           </ul>
         </li>
-        <li><a href="#week-13">Week 13: Open Studio</a></li>
+        <li><span class="toc-phase-label toc-phase-label--phase3">Phase 3: Critical Practice</span>
+          <ul class="toc-phase-list toc-phase-list--phase3">
+            <li><a href="#week-9">Week 9: Mapping Connections (Part 1) <span class="count">(8)</span></a></li>
+            <li><a href="#week-10">Week 10: Mapping Connections (Part 2) <span class="count">(8)</span></a></li>
+            <li><a href="#week-11">Week 11: Publishing Your Practice <span class="count">(6)</span></a>
+              <ul>
+                <li><a href="#week-11-questions">The 8 Access Questions</a></li>
+              </ul>
+            </li>
+            <li><a href="#week-12">Week 12 <span class="count">in development</span></a></li>
+            <li><a href="#week-13">Week 13: Open Studio</a></li>
+          </ul>
+        </li>
         <li><a href="#eoto">Post-Submission: EOTO</a></li>
       </ul>
     </nav>
@@ -641,17 +748,17 @@
       <div class="roadmap">
         <a class="roadmap-item" href="#week-1"><span class="wk">Week 1</span><span class="rtitle">Expanding Research</span><span class="chip">Gathering</span></a>
         <a class="roadmap-item" href="#week-2"><span class="wk">Week 2</span><span class="rtitle">Questioning Your Sources</span><span class="chip">Gathering</span></a>
-        <div class="roadmap-item"><span class="wk">Week 3</span><span class="rtitle">Whose Voices, Whose Stories?</span><span class="chip">Gathering</span></div>
-        <div class="roadmap-item"><span class="wk">Week 4</span><span class="rtitle">Your Material as Research</span><span class="chip">Experimenting</span></div>
-        <div class="roadmap-item"><span class="wk">Week 5</span><span class="rtitle">Making Generates Meaning</span><span class="chip">Experimenting</span></div>
-        <div class="roadmap-item"><span class="wk">Week 6</span><span class="rtitle">Structures (The Bridge)</span><span class="chip">The Bridge</span></div>
-        <div class="roadmap-item"><span class="wk">Week 7</span><span class="rtitle">Frameworks</span><span class="chip">Documenting</span></div>
-        <a class="roadmap-item" href="#week-8"><span class="wk">Week 8</span><span class="rtitle">Peer Review (Midpoint Feedback)</span><span class="chip">Documenting</span></a>
-        <a class="roadmap-item" href="#week-9"><span class="wk">Week 9</span><span class="rtitle">CRL: Mapping Connections in Space (Part 1)</span><span class="chip">Finalising</span></a>
-        <a class="roadmap-item" href="#week-10"><span class="wk">Week 10</span><span class="rtitle">CRL: Mapping Connections in Space (Part 2)</span><span class="chip">Finalising</span></a>
-        <a class="roadmap-item" href="#week-11"><span class="wk">Week 11</span><span class="rtitle">Publishing Your Practice</span><span class="chip">Finalising</span></a>
-        <div class="roadmap-item"><span class="wk">Week 12</span><span class="rtitle">Hand-in Prep</span><span class="chip">Finalising</span></div>
-        <a class="roadmap-item" href="#week-13"><span class="wk">Week 13</span><span class="rtitle">Open Studio</span><span class="chip">Finalising</span></a>
+        <a class="roadmap-item" href="#weeks-3-5"><span class="wk">Week 3</span><span class="rtitle">Whose Voices, Whose Stories?</span><span class="chip">Gathering</span></a>
+        <a class="roadmap-item" href="#weeks-3-5"><span class="wk">Week 4</span><span class="rtitle">Your Material as Research</span><span class="chip">Experimenting</span></a>
+        <a class="roadmap-item" href="#weeks-3-5"><span class="wk">Week 5</span><span class="rtitle">Making Generates Meaning</span><span class="chip">Experimenting</span></a>
+        <a class="roadmap-item roadmap-item--phase2" href="#weeks-6-7"><span class="wk">Week 6</span><span class="rtitle">Structures (The Bridge)</span><span class="chip chip--phase2">The Bridge</span></a>
+        <a class="roadmap-item roadmap-item--phase2" href="#weeks-6-7"><span class="wk">Week 7</span><span class="rtitle">Frameworks</span><span class="chip chip--phase2">Documenting</span></a>
+        <a class="roadmap-item roadmap-item--phase2" href="#week-8"><span class="wk">Week 8</span><span class="rtitle">Peer Review (Midpoint Feedback)</span><span class="chip chip--phase2">Documenting</span></a>
+        <a class="roadmap-item roadmap-item--phase3" href="#week-9"><span class="wk">Week 9</span><span class="rtitle">CRL: Mapping Connections in Space (Part 1)</span><span class="chip chip--phase3">Finalising</span></a>
+        <a class="roadmap-item roadmap-item--phase3" href="#week-10"><span class="wk">Week 10</span><span class="rtitle">CRL: Mapping Connections in Space (Part 2)</span><span class="chip chip--phase3">Finalising</span></a>
+        <a class="roadmap-item roadmap-item--phase3" href="#week-11"><span class="wk">Week 11</span><span class="rtitle">Publishing Your Practice</span><span class="chip chip--phase3">Finalising</span></a>
+        <a class="roadmap-item roadmap-item--phase3" href="#week-12"><span class="wk">Week 12</span><span class="rtitle">Hand-in Prep</span><span class="chip chip--phase3">Finalising</span></a>
+        <a class="roadmap-item roadmap-item--phase3" href="#week-13"><span class="wk">Week 13</span><span class="rtitle">Open Studio</span><span class="chip chip--phase3">Finalising</span></a>
       </div>
     </section>
 
@@ -730,6 +837,14 @@
         </ul>
       </div>
     </section>
+
+    <!-- PHASE 1 INTRO -->
+    <div class="phase-intro">
+      <span class="phase-label">Phase 1: Research Frameworks</span>
+      <h3>Weeks 1–5</h3>
+      <p class="phase-sub">Gathering &amp; Experimenting with Critical Practices</p>
+      <p>Students investigate external Platform 1 concepts and references, developing critical literacy through investigation and experimentation. Learn how to research, question, map, and think spatially.</p>
+    </div>
 
     <!-- WEEK 1 -->
     <section id="week-1">
@@ -1050,6 +1165,30 @@
       </div>
     </section>
 
+    <!-- WEEKS 3-5 (IN DEVELOPMENT) -->
+    <section id="weeks-3-5">
+      <div class="callout callout--pending">
+        <span class="label">Weeks 3–5 · in development</span>
+        <p>Weeks 3, 4, and 5 continue Phase 1, deepening critical literacy through additional investigation frameworks: archival curation, visual sequencing, and further research practice. These workshops remain part of the Gathering &amp; Experimenting phase, building the foundation for the Bridge in Week 6.</p>
+      </div>
+    </section>
+
+    <!-- PHASE 2 INTRO -->
+    <div class="phase-intro phase-intro--phase2">
+      <span class="phase-label">Phase 2: Positioning</span>
+      <h3>Weeks 6–8</h3>
+      <p class="phase-sub">The Bridge — Reflecting and Repositioning</p>
+      <p>Students reflect on what they've learned through Phase 1 and begin positioning their own current practice within those frameworks. Peer feedback and midpoint review create a deliberate shift from external investigation to internal analysis: what will you carry forward? All three learning outcomes converge here as students move from investigating external references toward analysing their own work.</p>
+    </div>
+
+    <!-- WEEKS 6-7 (IN DEVELOPMENT) -->
+    <section id="weeks-6-7">
+      <div class="callout callout--pending">
+        <span class="label">Weeks 6–7 · in development</span>
+        <p>Weeks 6 and 7 complete the start of Phase 2, establishing the pedagogical bridge where students transition from investigating external Platform 1 references to analysing their own Platform 2 practice. These weeks frame the positioning work essential before the midpoint review in Week 8.</p>
+      </div>
+    </section>
+
     <!-- WEEK 8 -->
     <section id="week-8">
       <h2 class="week-title">W8: Midpoint Peer Review</h2>
@@ -1189,6 +1328,14 @@
       </div>
       <p class="materials-note">Materials: printed Midpoint Feedback Form (one per review), Peer Review Instructions/Guidelines, and your 600-word hand-in.</p>
     </section>
+
+    <!-- PHASE 3 INTRO -->
+    <div class="phase-intro phase-intro--phase3">
+      <span class="phase-label">Phase 3: Critical Practice</span>
+      <h3>Weeks 9–13</h3>
+      <p class="phase-sub">Activating &amp; Finalising Knowledge</p>
+      <p>Students activate the research practices they've developed, now directed at analysing their own Platform 2 work. Produce a designed critical report that publishes their practice as knowledge. Culminates in public presentation (Open Studio).</p>
+    </div>
 
     <!-- WEEK 9 -->
     <section id="week-9">
@@ -1743,6 +1890,14 @@
       </ul>
     </section>
 
+    <!-- WEEK 12 (IN DEVELOPMENT) -->
+    <section id="week-12">
+      <div class="callout callout--pending">
+        <span class="label">Week 12 · in development</span>
+        <p>Week 12 continues Phase 3, providing dedicated time for students to refine their critical reports, incorporate feedback from earlier sessions, and prepare their publishing explorations for the Open Studio presentation.</p>
+      </div>
+    </section>
+
     <!-- WEEK 13 -->
     <section id="week-13">
       <h2 class="week-title">W13: Open Studio</h2>
@@ -1929,19 +2084,19 @@
       // "image" is optional — set it to a real photo path (e.g. "images/week1.jpg")
       // and the card will use it instead of the placeholder texture, auto-tinted
       // to the site purple via the existing CSS duotone blend.
-      { n: 1, title: 'Expanding Research', tags: ['Gathering'], time: '10:00–13:00', anchor: '#week-1', hasDetail: true, image: 'images/week1.jpg' },
-      { n: 2, title: 'Questioning Your Sources', tags: ['Gathering'], time: '10:00–13:00', anchor: '#week-2', hasDetail: true, image: 'images/week2.jpg' },
-      { n: 3, title: 'Whose Voices, Whose Stories?', tags: ['Gathering'], time: '', anchor: '#programme', hasDetail: false },
-      { n: 4, title: 'Your Material as Research', tags: ['Experimenting'], time: '', anchor: '#programme', hasDetail: false },
-      { n: 5, title: 'Making Generates Meaning', tags: ['Experimenting'], time: '', anchor: '#programme', hasDetail: false },
-      { n: 6, title: 'Structures (The Bridge)', tags: ['The Bridge'], time: '', anchor: '#programme', hasDetail: false },
-      { n: 7, title: 'Frameworks', tags: ['Documenting'], time: '', anchor: '#programme', hasDetail: false },
-      { n: 8, title: 'Peer Review (Midpoint Feedback)', tags: ['Documenting'], time: '', anchor: '#week-8', hasDetail: true, image: 'images/week8.jpg' },
-      { n: 9, title: 'CRL: Mapping Connections in Space (Part 1)', tags: ['Finalising'], time: '', anchor: '#week-9', hasDetail: true, image: 'images/week9.jpg' },
-      { n: 10, title: 'CRL: Mapping Connections in Space (Part 2)', tags: ['Finalising'], time: '', anchor: '#week-10', hasDetail: true, image: 'images/week10.jpg' },
-      { n: 11, title: 'Publishing Your Practice', tags: ['Finalising'], time: '', anchor: '#week-11', hasDetail: true, image: 'images/week11.jpg' },
-      { n: 12, title: 'Hand-in Prep', tags: ['Finalising'], time: '', anchor: '#programme', hasDetail: false, image: 'images/week12.jpg' },
-      { n: 13, title: 'Open Studio', tags: ['Finalising'], time: '', anchor: '#week-13', hasDetail: true, image: 'images/week13.jpg' }
+      { n: 1, title: 'Expanding Research', tags: ['Gathering'], phase: 1, time: '10:00–13:00', anchor: '#week-1', hasDetail: true, image: 'images/week1.jpg' },
+      { n: 2, title: 'Questioning Your Sources', tags: ['Gathering'], phase: 1, time: '10:00–13:00', anchor: '#week-2', hasDetail: true, image: 'images/week2.jpg' },
+      { n: 3, title: 'Whose Voices, Whose Stories?', tags: ['Gathering'], phase: 1, time: '', anchor: '#weeks-3-5', hasDetail: true },
+      { n: 4, title: 'Your Material as Research', tags: ['Experimenting'], phase: 1, time: '', anchor: '#weeks-3-5', hasDetail: true },
+      { n: 5, title: 'Making Generates Meaning', tags: ['Experimenting'], phase: 1, time: '', anchor: '#weeks-3-5', hasDetail: true },
+      { n: 6, title: 'Structures (The Bridge)', tags: ['The Bridge'], phase: 2, time: '', anchor: '#weeks-6-7', hasDetail: true },
+      { n: 7, title: 'Frameworks', tags: ['Documenting'], phase: 2, time: '', anchor: '#weeks-6-7', hasDetail: true },
+      { n: 8, title: 'Peer Review (Midpoint Feedback)', tags: ['Documenting'], phase: 2, time: '', anchor: '#week-8', hasDetail: true, image: 'images/week8.jpg' },
+      { n: 9, title: 'CRL: Mapping Connections in Space (Part 1)', tags: ['Finalising'], phase: 3, time: '', anchor: '#week-9', hasDetail: true, image: 'images/week9.jpg' },
+      { n: 10, title: 'CRL: Mapping Connections in Space (Part 2)', tags: ['Finalising'], phase: 3, time: '', anchor: '#week-10', hasDetail: true, image: 'images/week10.jpg' },
+      { n: 11, title: 'Publishing Your Practice', tags: ['Finalising'], phase: 3, time: '', anchor: '#week-11', hasDetail: true, image: 'images/week11.jpg' },
+      { n: 12, title: 'Hand-in Prep', tags: ['Finalising'], phase: 3, time: '', anchor: '#week-12', hasDetail: true, image: 'images/week12.jpg' },
+      { n: 13, title: 'Open Studio', tags: ['Finalising'], phase: 3, time: '', anchor: '#week-13', hasDetail: true, image: 'images/week13.jpg' }
     ];
 
     var slot = document.getElementById('currentWeekSlot');
@@ -1957,6 +2112,7 @@
 
       function cardHTML(w, statusLabel){
         var tagsHtml = w.tags.map(function(t){ return '<span>' + t + '</span>'; }).join(', ');
+        var phaseClass = w.phase === 2 ? ' cw-tags--phase2' : w.phase === 3 ? ' cw-tags--phase3' : '';
         var timeHtml = w.time ? '<div class="cw-date">' + w.time + '</div>' : '';
         var linkHtml = '<div class="cw-link">' + (w.hasDetail ? 'View full session →' : 'See what\'s coming →') + '</div>';
         var badgeHtml = statusLabel ? '<span class="status">' + statusLabel + '</span>' : '';
@@ -1966,7 +2122,7 @@
           '<div class="visual duotone">' + badgeHtml + imageHtml + wkHtml + '</div>' +
           '<div class="body">' +
             '<div class="cw-title">Week ' + w.n + ' — ' + w.title + '</div>' +
-            '<div class="cw-tags">' + tagsHtml + '</div>' +
+            '<div class="cw-tags' + phaseClass + '">' + tagsHtml + '</div>' +
             timeHtml +
             linkHtml +
           '</div>' +
