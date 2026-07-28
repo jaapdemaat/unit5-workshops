@@ -208,6 +208,9 @@
     background: linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 100%);
     mix-blend-mode: color;
   }
+  .duotone--phase2::after{ background: linear-gradient(155deg, var(--phase2) 0%, var(--phase2-deep) 100%); }
+  .duotone--phase3::after{ background: linear-gradient(155deg, var(--phase3) 0%, var(--phase3-deep) 100%); }
+  .duotone--phase4::after{ background: linear-gradient(155deg, var(--phase4) 0%, var(--phase4-deep) 100%); }
   .current-week-card .visual .wk{
     position: absolute; inset: 0;
     z-index: 1;
@@ -2176,14 +2179,16 @@
 
       function cardHTML(w, statusLabel){
         var tagsHtml = w.tags.map(function(t){ return '<span>' + t + '</span>'; }).join(', ');
-        var phaseClass = w.phase === 2 ? ' cw-tags--phase2' : w.phase === 3 ? ' cw-tags--phase3' : '';
+        var phaseSuffix = (w.phase === 2 || w.phase === 3 || w.phase === 4) ? 'phase' + w.phase : '';
+        var phaseClass = phaseSuffix ? ' cw-tags--' + phaseSuffix : '';
+        var duotoneClass = phaseSuffix ? ' duotone--' + phaseSuffix : '';
         var timeHtml = w.time ? '<div class="cw-date">' + w.time + '</div>' : '';
         var linkHtml = '<div class="cw-link">' + (w.hasDetail ? 'View full session →' : 'See what\'s coming →') + '</div>';
         var badgeHtml = statusLabel ? '<span class="status">' + statusLabel + '</span>' : '';
         var imageHtml = w.image ? '<img src="' + w.image + '" alt="">' : placeholderVisual;
         var wkHtml = '<span class="wk">W' + w.n + '</span>';
         return '<a class="current-week-card" href="' + w.anchor + '">' +
-          '<div class="visual duotone">' + badgeHtml + imageHtml + wkHtml + '</div>' +
+          '<div class="visual duotone' + duotoneClass + '">' + badgeHtml + imageHtml + wkHtml + '</div>' +
           '<div class="body">' +
             '<div class="cw-title">Week ' + w.n + ' — ' + w.title + '</div>' +
             '<div class="cw-tags' + phaseClass + '">' + tagsHtml + '</div>' +
