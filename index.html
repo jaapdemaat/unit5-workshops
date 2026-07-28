@@ -148,23 +148,24 @@
   h3{ font-size: 1.15rem; margin: 0 0 10px; color: var(--ink); }
 
   /* ---------- Duotone image treatment ----------
-     Drop any <img> (or <svg>) into .current-week-card .visual and it
-     auto-tints to the site purple via blend modes — no per-image
-     editing needed. */
-  .current-week-card .visual{
+     Drop any <img> (or <svg>) into an element with class="duotone" and
+     it auto-tints to the site purple via blend modes — no per-image
+     editing needed. Used for the Current Week cards and the video
+     posters below. */
+  .duotone{
     position: relative;
     overflow: hidden;
     background: var(--purple-tint-2);
   }
-  .current-week-card .visual img,
-  .current-week-card .visual svg{
+  .duotone img,
+  .duotone svg{
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
     filter: grayscale(1) contrast(1.05);
     mix-blend-mode: luminosity;
   }
-  .current-week-card .visual::after{
+  .duotone::after{
     content: "";
     position: absolute; inset: 0;
     background: linear-gradient(155deg, var(--purple) 0%, var(--purple-deep) 100%);
@@ -394,6 +395,32 @@
   }
   .video-embed--portrait{ aspect-ratio: 9 / 16; max-width: 360px; }
   .video-fallback{ font-size: 0.85rem; margin-top: 8px; }
+
+  /* ---------- Video poster (click-to-play) ----------
+     Shows a duotone-treated thumbnail matching the rest of the site
+     until clicked, then swaps itself for the real iframe - so the
+     video plays in full colour rather than staying tinted. */
+  .video-poster{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    margin: 0; padding: 0; border: 0;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .video-poster .play-icon{
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 60px; height: 60px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.94);
+    color: var(--purple-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 14px rgba(22,21,31,0.3);
+  }
 
   /* ---------- Timeline ---------- */
   .timeline{ position: relative; margin: 0 0 20px; padding-left: 0; }
@@ -731,8 +758,11 @@
 
       <h3>Introduction</h3>
       <p>Before this workshop, you watched the <em>Powers of Ten</em> video in the Stage 2 lecture. This video shows how perspective shifts when you zoom in and out — from the vast cosmos to a single atom. Research works the same way. You start broad, then zoom in on something specific, then step back to see how it connects to larger ideas.</p>
-      <div class="video-embed">
-        <iframe src="https://www.youtube-nocookie.com/embed/0fKBhvDjuy0?origin=https://jaapdemaat.github.io" title="Powers of Ten" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="video-embed" data-embed-src="https://www.youtube-nocookie.com/embed/0fKBhvDjuy0?origin=https://jaapdemaat.github.io&amp;autoplay=1" data-embed-title="Powers of Ten">
+        <button type="button" class="video-poster duotone" aria-label="Play video: Powers of Ten">
+          <img src="https://img.youtube.com/vi/0fKBhvDjuy0/hqdefault.jpg" alt="">
+          <span class="play-icon" aria-hidden="true">▶</span>
+        </button>
       </div>
       <p class="video-fallback"><a href="https://youtu.be/0fKBhvDjuy0" target="_blank" rel="noopener">Video not loading? Watch on YouTube →</a></p>
       <p>Platform Leaders have already chosen concepts, readings, and approaches that represent conversations in Graphic Communication Design. Exploring these now isn't just preparation for Unit 6. It builds the research skills and vocabulary that will let you write a strong, well-informed critical report about your own practice later in the unit.</p>
@@ -893,8 +923,11 @@
         <ul class="plain-list">
           <li>Watch <em>Good Copy Bad Copy</em> (pre-lecture task) — embedded below.</li>
         </ul>
-        <div class="video-embed">
-          <iframe src="https://www.youtube-nocookie.com/embed/mntVh15W1uY?origin=https://jaapdemaat.github.io" title="Good Copy Bad Copy" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-embed" data-embed-src="https://www.youtube-nocookie.com/embed/mntVh15W1uY?origin=https://jaapdemaat.github.io&amp;autoplay=1" data-embed-title="Good Copy Bad Copy">
+          <button type="button" class="video-poster duotone" aria-label="Play video: Good Copy Bad Copy">
+            <img src="https://img.youtube.com/vi/mntVh15W1uY/hqdefault.jpg" alt="">
+            <span class="play-icon" aria-hidden="true">▶</span>
+          </button>
         </div>
         <p class="video-fallback"><a href="https://www.youtube.com/watch?v=mntVh15W1uY" target="_blank" rel="noopener">Video not loading? Watch on YouTube →</a></p>
         <ul class="plain-list flush-bottom mt-sm">
@@ -1776,8 +1809,11 @@
       </div>
 
       <h3 class="mt-lg">From a previous Open Studio</h3>
-      <div class="video-embed">
-        <iframe src="https://player.vimeo.com/video/370391243?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="GCDBAS2 Unit 5 Open Studio 10.11.19" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="video-embed" data-embed-src="https://player.vimeo.com/video/370391243?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" data-embed-title="GCDBAS2 Unit 5 Open Studio 10.11.19">
+        <button type="button" class="video-poster duotone" aria-label="Play video: GCDBAS2 Unit 5 Open Studio 10.11.19">
+          <img src="https://i.vimeocdn.com/video/827605397-f2ff10e951acb36b73c734da9b1d96c10d511ad4c9cdc83f2d2f662fc568cd26-d_1280?region=us" alt="">
+          <span class="play-icon" aria-hidden="true">▶</span>
+        </button>
       </div>
       <p class="video-fallback"><a href="https://vimeo.com/370391243" target="_blank" rel="noopener">Video not loading? Watch on Vimeo →</a></p>
     </section>
@@ -1804,8 +1840,11 @@
         </div>
       </div>
 
-      <div class="video-embed video-embed--portrait">
-        <iframe src="https://player.vimeo.com/video/917292884?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="GCD Skillz - Each One Teach One" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="video-embed video-embed--portrait" data-embed-src="https://player.vimeo.com/video/917292884?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" data-embed-title="GCD Skillz - Each One Teach One">
+        <button type="button" class="video-poster duotone" aria-label="Play video: GCD Skillz - Each One Teach One">
+          <img src="https://i.vimeocdn.com/video/1805522497-42e80d2de374cd742e79471e12966f77d991b0895954bbead9e27b3ccf94c72c-d_640?region=us" alt="">
+          <span class="play-icon" aria-hidden="true">▶</span>
+        </button>
       </div>
       <p class="video-fallback"><a href="https://vimeo.com/917292884" target="_blank" rel="noopener">Video not loading? Watch on Vimeo →</a></p>
     </section>
@@ -1844,6 +1883,28 @@
         setMode(!document.body.classList.contains('tutor-mode'));
       });
     }
+  })();
+
+  (function(){
+    // Click-to-play video posters: each .video-embed[data-embed-src] shows
+    // a duotone thumbnail (matching the rest of the site) until clicked,
+    // then swaps itself for the real iframe so the video plays in full
+    // colour rather than staying tinted.
+    document.querySelectorAll('.video-embed[data-embed-src]').forEach(function(embed){
+      var poster = embed.querySelector('.video-poster');
+      if (!poster) return;
+      poster.addEventListener('click', function(){
+        var iframe = document.createElement('iframe');
+        iframe.src = embed.getAttribute('data-embed-src');
+        iframe.title = embed.getAttribute('data-embed-title') || '';
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allow = 'accelerometer; autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; gyroscope; web-share';
+        iframe.allowFullscreen = true;
+        embed.innerHTML = '';
+        embed.appendChild(iframe);
+      });
+    });
   })();
 
   (function(){
@@ -1894,7 +1955,7 @@
         var imageHtml = w.image ? '<img src="' + w.image + '" alt="">' : placeholderVisual;
         var wkHtml = '<span class="wk">W' + w.n + '</span>';
         return '<a class="current-week-card" href="' + w.anchor + '">' +
-          '<div class="visual">' + badgeHtml + imageHtml + wkHtml + '</div>' +
+          '<div class="visual duotone">' + badgeHtml + imageHtml + wkHtml + '</div>' +
           '<div class="body">' +
             '<div class="cw-title">Week ' + w.n + ' — ' + w.title + '</div>' +
             '<div class="cw-tags">' + tagsHtml + '</div>' +
