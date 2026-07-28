@@ -169,6 +169,13 @@
   .toc-phase-label--phase4{ color: var(--phase4-deep); }
   .toc .toc-phase-list--phase4{ border-left-color: var(--phase4-tint-2); }
 
+  /* Active-link highlight also needs to follow the phase it's inside,
+     otherwise every selected section highlights in the default purple
+     regardless of which phase's weeks it belongs to. */
+  .toc .toc-phase-list--phase2 a.active{ color: var(--phase2-deep); background: var(--phase2-tint); }
+  .toc .toc-phase-list--phase3 a.active{ color: var(--phase3-deep); background: var(--phase3-tint); }
+  .toc .toc-phase-list--phase4 a.active{ color: var(--phase4-deep); background: var(--phase4-tint); }
+
   main.content{ min-width: 0; }
 
   section{ padding: 44px 0; border-top: 1px solid var(--border); }
