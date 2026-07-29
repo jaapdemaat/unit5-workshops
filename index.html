@@ -680,6 +680,7 @@
   }
   .pair .code{ font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--purple-deep); letter-spacing: 0.05em; }
   .pair .names{ font-weight: 600; margin-top: 2px; }
+  .pair .time{ font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
 
   /* ---------- Tutor avatars ----------
      Small duotone avatar per tutor, same recipe as the Week by Week
@@ -689,9 +690,9 @@
      mirroring the "W1" pattern on the week cards. */
   .pair-avatars{ display: flex; gap: 8px; margin-bottom: 10px; }
   .avatar{
-    width: 76px; height: 104px;
+    flex: 1 1 0;
+    aspect-ratio: 3 / 4;
     border-radius: 8px;
-    flex: 0 0 auto;
   }
   .avatar img{ object-position: 50% 20%; }
   .avatar-placeholder{
@@ -964,35 +965,35 @@
             <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">A</span></div>
             <div class="avatar duotone"><img src="images/tutor-kira.jpg" alt=""></div>
           </div>
-          <div class="code">F204</div><div class="names">Amrit &amp; Kira</div>
+          <div class="code">F204</div><div class="names">Amrit &amp; Kira</div><div class="time">10:00–13:00</div>
         </div>
         <div class="pair">
           <div class="pair-avatars">
             <div class="avatar duotone"><img src="images/tutor-mike.jpg" alt=""></div>
             <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">R</span></div>
           </div>
-          <div class="code">K205</div><div class="names">Mike &amp; Rachel</div>
+          <div class="code">K205</div><div class="names">Mike &amp; Rachel</div><div class="time">10:00–13:00</div>
         </div>
         <div class="pair">
           <div class="pair-avatars">
             <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">S</span></div>
             <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">A</span></div>
           </div>
-          <div class="code">K203</div><div class="names">Sakis &amp; Amandine</div>
+          <div class="code">K203</div><div class="names">Sakis &amp; Amandine</div><div class="time">10:00–13:00</div>
         </div>
         <div class="pair">
           <div class="pair-avatars">
             <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">O</span></div>
             <div class="avatar duotone"><img src="images/tutor-andrea.jpg" alt=""></div>
           </div>
-          <div class="code">K204</div><div class="names">Odira &amp; Andrea</div>
+          <div class="code">K204</div><div class="names">Odira &amp; Andrea</div><div class="time">10:00–13:00</div>
         </div>
         <div class="pair">
           <div class="pair-avatars">
             <div class="avatar duotone"><img src="images/tutor-anoushka.jpg" alt=""></div>
             <div class="avatar duotone"><div class="avatar-placeholder"></div><span class="initials">J</span></div>
           </div>
-          <div class="code">K202</div><div class="names">Anoushka &amp; Jessica</div>
+          <div class="code">K202</div><div class="names">Anoushka &amp; Jessica</div><div class="time">10:00–13:00</div>
         </div>
       </div>
 
