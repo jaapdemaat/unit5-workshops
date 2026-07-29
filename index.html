@@ -427,6 +427,37 @@
   }
   .callout p{ color: var(--ink); }
 
+  /* ---------- Workshop sequence at a glance (phase table) ----------
+     Horizontally scrollable on narrow screens, like the Week by Week
+     row - each column tinted to its phase, headers solid + white. */
+  .phase-table-wrap{
+    overflow-x: auto;
+    margin-bottom: 26px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .phase-table{ width: 100%; min-width: 640px; border-collapse: collapse; }
+  .phase-table th{
+    text-align: left;
+    font-size: 0.92rem;
+    font-weight: 800;
+    padding: 14px 16px;
+    color: #fff;
+  }
+  .phase-table td{
+    vertical-align: top;
+    padding: 14px 16px;
+    font-size: 0.88rem;
+    color: var(--ink);
+    border-top: 1px solid var(--border);
+  }
+  .phase-table th.phase-table--phase1{ background: var(--purple); }
+  .phase-table td.phase-table--phase1{ background: var(--purple-tint); }
+  .phase-table th.phase-table--phase2{ background: var(--phase2); }
+  .phase-table td.phase-table--phase2{ background: var(--phase2-tint); }
+  .phase-table th.phase-table--phase3{ background: var(--phase3); }
+  .phase-table td.phase-table--phase3{ background: var(--phase3-tint); }
+
   /* ---------- Phase intro banners ----------
      Section dividers that open each of the 3 phases. Same shape as a
      callout but larger, with its own colour per phase so the three
@@ -807,6 +838,36 @@
       <h3>Workshop philosophy</h3>
       <p>Your Platform brief isn't just a project to complete — it's a doorway into conversations, ideas, and ways of thinking that can help you understand your own design practice. Platform Leaders have carefully chosen concepts, readings, and approaches that represent important conversations in Graphic Communication Design. By exploring these, you aren't just preparing for Unit 6 — you're discovering new ways to research, think about, and talk about your work.</p>
 
+      <h3>Workshop sequence at a glance</h3>
+      <div class="phase-table-wrap">
+        <table class="phase-table">
+          <thead>
+            <tr>
+              <th class="phase-table--phase1">Phase 1: Research Frameworks</th>
+              <th class="phase-table--phase2">Phase 2: Positioning</th>
+              <th class="phase-table--phase3">Phase 3: Critical Practice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="phase-table--phase1"><strong>Weeks:</strong> 1–5</td>
+              <td class="phase-table--phase2"><strong>Weeks:</strong> 6–8</td>
+              <td class="phase-table--phase3"><strong>Weeks:</strong> 9–13</td>
+            </tr>
+            <tr>
+              <td class="phase-table--phase1"><strong>Workshops:</strong> Expanding Research, Questioning Your Sources (+ Weeks 3–5 in development)</td>
+              <td class="phase-table--phase2"><strong>Workshops:</strong> (Weeks 6–7 in development), Midpoint Peer Review</td>
+              <td class="phase-table--phase3"><strong>Workshops:</strong> Mapping Part 1 &amp; 2, Publishing Your Practice, (Week 12 in development), Open Studio</td>
+            </tr>
+            <tr>
+              <td class="phase-table--phase1"><strong>LO2</strong> — explore and evaluate a range of historical and contemporary contexts of Graphic Communication Design and investigate how your current practice engages with climate, racial and social justice (AC Knowledge)</td>
+              <td class="phase-table--phase2"><strong>LO1</strong> — review, investigate and reflect on the development of your current practice with reference to the body of work you are producing in your Unit 6 Platforms (AC Enquiry)</td>
+              <td class="phase-table--phase3"><strong>LO3</strong> — produce a designed critical report that uses descriptive, reflective, and critical writing to contextualise your current practice with reference to debates in the larger context of Graphic Communication Design (AC Realisation)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <h3>Workshop sequence structure</h3>
       <p><strong>Platform progression:</strong></p>
       <ul class="plain-list">
@@ -978,7 +1039,7 @@
       <span class="phase-label">Phase 1: Research Frameworks</span>
       <h3>Weeks 1–5</h3>
       <p class="phase-sub">Gathering &amp; Experimenting with Critical Practices</p>
-      <p>Students investigate external Platform 1 concepts and references, developing critical literacy through investigation and experimentation. Learn how to research, question, map, and think spatially.</p>
+      <p>You will investigate external Platform 1 concepts and references, developing critical literacy through investigation and experimentation. You'll learn how to research, question, map, and think spatially.</p>
     </div>
 
     <!-- WEEK 1 -->
@@ -1313,7 +1374,7 @@
       <span class="phase-label">Phase 2: Positioning</span>
       <h3>Weeks 6–8</h3>
       <p class="phase-sub">The Bridge — Reflecting and Repositioning</p>
-      <p>Students reflect on what they've learned through Phase 1 and begin positioning their own current practice within those frameworks. Peer feedback and midpoint review create a deliberate shift from external investigation to internal analysis: what will you carry forward? All three learning outcomes converge here as students move from investigating external references toward analysing their own work.</p>
+      <p>You will reflect on what you've learned through Phase 1 and begin positioning your own current practice within those frameworks. Peer feedback and midpoint review create a deliberate shift from external investigation to internal analysis: what will you carry forward?</p>
     </div>
 
     <!-- WEEKS 6-7 (IN DEVELOPMENT) -->
@@ -1469,7 +1530,7 @@
       <span class="phase-label">Phase 3: Critical Practice</span>
       <h3>Weeks 9–13</h3>
       <p class="phase-sub">Activating &amp; Finalising Knowledge</p>
-      <p>Students activate the research practices they've developed, now directed at analysing their own Platform 2 work. Produce a designed critical report that publishes their practice as knowledge. Culminates in public presentation (Open Studio).</p>
+      <p>You will activate the research practices you've developed, now directed at analysing your own Platform 2 work. You'll produce a designed critical report that publishes your practice as knowledge. It culminates in public presentation (Open Studio).</p>
     </div>
 
     <!-- WEEK 9 -->
