@@ -238,8 +238,35 @@
     letter-spacing: -0.01em;
     color: var(--purple-deep);
     text-transform: none;
-    margin: 0 0 24px;
+    margin: 0;
   }
+
+  /* ---------- Collapsible week sections ----------
+     Each week's full detail is collapsed behind its title by default,
+     so the page loads short - click the title to expand. Print/Export
+     forces every one open first (see script) so exports still get
+     the full content. */
+  .week-collapsible > summary{
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .week-collapsible > summary::-webkit-details-marker{ display: none; }
+  .week-collapsible > summary::after{
+    content: "▾";
+    flex: 0 0 auto;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--purple-deep);
+    transition: transform 0.15s ease;
+  }
+  .week-collapsible[open] > summary::after{ transform: rotate(180deg); }
+  .week-phase--phase2 .week-collapsible > summary::after{ color: var(--phase2-deep); }
+  .week-phase--phase3 .week-collapsible > summary::after{ color: var(--phase3-deep); }
+  .week-phase--phase4 .week-collapsible > summary::after{ color: var(--phase4-deep); }
 
   /* ---------- Current week cards ----------
      Horizontally scrollable row (all 13 weeks), snapping one card at a
@@ -1051,7 +1078,8 @@
 
     <!-- WEEK 1 -->
     <section id="week-1">
-      <h2 class="week-title">W1: Expanding Research</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W1: Expanding Research</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -1188,11 +1216,13 @@
         <div class="a"><p>You can look at other Platform 1 briefs for inspiration during Weeks 1–5, but your primary research lens should be your own Platform 1. This keeps your research focused. In Week 6, you'll switch to Platform 2 anyway — likely a different Platform from your Platform 1 — so you'll get exposure to multiple Platform perspectives across the unit.</p></div>
       </details>
       <p class="mt-md"><em>Research isn't about finding the right answer. It's about developing your own perspective through curiosity, exploration, and making connections others haven't seen yet.</em></p>
+      </details>
     </section>
 
     <!-- WEEK 2 -->
     <section id="week-2">
-      <h2 class="week-title">W2: Questioning Your Sources</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W2: Questioning Your Sources</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -1366,6 +1396,7 @@
         <span class="label">Next week</span>
         <p>Week 3 · Archives — following Laura Knight's workshop and introduction to Community resource list.</p>
       </div>
+      </details>
     </section>
 
     <!-- WEEKS 3-5 (IN DEVELOPMENT) -->
@@ -1386,7 +1417,8 @@
 
     <!-- WEEK 6 -->
     <section id="week-6" class="week-phase--phase2">
-      <h2 class="week-title">W6: The Bridge — Part 1</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W6: The Bridge — Part 1</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -1569,11 +1601,13 @@
       <p>Before you leave: share your written reflection with your tutor (digital is fine — email or Teams).</p>
       <p><strong>Between now and Week 7:</strong> sit with what you've discovered. You don't need to do anything — just let the patterns settle. Read your reflection once or twice if you want to. Think about which patterns surprise you most.</p>
       <p class="flush-bottom"><strong>Next week (Week 7):</strong> you'll use this reflection to find your through-line and start writing your 600-word midpoint. Most of the writing happens during the workshop, with tutor support.</p>
+      </details>
     </section>
 
     <!-- WEEK 7 -->
     <section id="week-7" class="week-phase--phase2">
-      <h2 class="week-title">W7: The Bridge — Part 2</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W7: The Bridge — Part 2</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -1691,11 +1725,13 @@
 
       <h3 class="mt-lg">After the workshop</h3>
       <p class="flush-bottom">Save your 600-word PDF. You'll submit it via Moodle by Monday Week 8, 13:00. Bring a hardcopy or digital version to Week 8 for peer review.</p>
+      </details>
     </section>
 
     <!-- WEEK 8 -->
     <section id="week-8" class="week-phase--phase2">
-      <h2 class="week-title">W8: Midpoint Peer Review</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W8: Midpoint Peer Review</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -1831,6 +1867,7 @@
         </div>
       </div>
       <p class="materials-note">Materials: printed Midpoint Feedback Form (one per review), Peer Review Instructions/Guidelines, and your 600-word hand-in.</p>
+      </details>
     </section>
 
     <!-- PHASE 3 INTRO -->
@@ -1843,7 +1880,8 @@
 
     <!-- WEEK 9 -->
     <section id="week-9" class="week-phase--phase3">
-      <h2 class="week-title">W9: CRL — Mapping Connections in Space (Part 1)</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W9: CRL — Mapping Connections in Space (Part 1)</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -1984,11 +2022,13 @@
         <span class="label">Bring to Week 10</span>
         <p>Your map (rolled or folded), your notes on the map, and any materials you think might help translate it into 3D.</p>
       </div>
+      </details>
     </section>
 
     <!-- WEEK 10 -->
     <section id="week-10" class="week-phase--phase3">
-      <h2 class="week-title">W10: CRL — Mapping Connections in Space (Part 2)</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W10: CRL — Mapping Connections in Space (Part 2)</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -2133,11 +2173,13 @@
         <li>Cecilia Vicuña — material and spiritual geographies</li>
         <li>Sara Ahmed, <em>Queer Phenomenology</em> — how movement through space shapes understanding</li>
       </ul>
+      </details>
     </section>
 
     <!-- WEEK 11 -->
     <section id="week-11" class="week-phase--phase3">
-      <h2 class="week-title">W11: Publishing Your Practice</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W11: Publishing Your Practice</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -2392,6 +2434,7 @@
         <li><em>Norm, Measure of All Things</em> — Sofia Lemos</li>
         <li><em>Why It's Taking So Long</em> — Johanna Hedva</li>
       </ul>
+      </details>
     </section>
 
     <!-- WEEK 12 (IN DEVELOPMENT) -->
@@ -2404,7 +2447,8 @@
 
     <!-- WEEK 13 -->
     <section id="week-13" class="week-phase--phase3">
-      <h2 class="week-title">W13: Open Studio</h2>
+      <details class="week-collapsible">
+        <summary><h2 class="week-title">W13: Open Studio</h2></summary>
 
       <div class="callout tutor-note">
         <span class="label">Facilitator's note — tutor only</span>
@@ -2483,6 +2527,7 @@
         </button>
       </div>
       <p class="video-fallback"><a href="https://vimeo.com/370391243" target="_blank" rel="noopener">Video not loading? Watch on Vimeo →</a></p>
+      </details>
     </section>
 
     <!-- EOTO (POST-SUBMISSION, WEEKS 14-15) -->
@@ -2527,9 +2572,52 @@
 
 <script>
   (function(){
+    // Open every collapsed week section before printing so exports
+    // still contain the full content, then restore whatever the
+    // reader had open/closed once the print dialog closes.
     document.getElementById('printBtn').addEventListener('click', function(){
+      var detailsList = Array.from(document.querySelectorAll('.week-collapsible'));
+      var previousStates = detailsList.map(function(d){ return d.open; });
+      detailsList.forEach(function(d){ d.open = true; });
       window.print();
+      detailsList.forEach(function(d, i){ d.open = previousStates[i]; });
     });
+  })();
+
+  (function(){
+    // Week sections are collapsed by default. If the URL (or a click
+    // on an in-page link) points at something inside a closed
+    // <details>, open every ancestor details so the target is
+    // actually visible, then re-scroll to it once the layout settles.
+    function openDetailsForHash(){
+      var hash = window.location.hash;
+      if (!hash || hash.length < 2) return;
+      var target;
+      try { target = document.getElementById(decodeURIComponent(hash.slice(1))); }
+      catch (e) { target = null; }
+      if (!target) return;
+      var el = target;
+      var openedAny = false;
+      while (el) {
+        if (el.tagName === 'DETAILS' && !el.open) {
+          el.open = true;
+          openedAny = true;
+        }
+        el = el.parentElement;
+      }
+      if (openedAny) {
+        requestAnimationFrame(function(){
+          target.scrollIntoView({ behavior: 'instant', block: 'start' });
+        });
+      }
+    }
+
+    window.addEventListener('hashchange', openDetailsForHash);
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[href^="#"]');
+      if (a) setTimeout(openDetailsForHash, 0);
+    });
+    openDetailsForHash();
   })();
 
   (function(){
