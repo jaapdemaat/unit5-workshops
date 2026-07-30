@@ -727,7 +727,12 @@
   @media (min-width: 900px){
     header.top .header-row{ flex-direction: row; justify-content: space-between; align-items: flex-start; }
     .layout{ grid-template-columns: 240px 1fr; align-items: start; }
-    .sidebar{ position: sticky; top: 24px; }
+    .sidebar{
+      position: sticky;
+      top: 24px;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+    }
   }
 
   @media print{
