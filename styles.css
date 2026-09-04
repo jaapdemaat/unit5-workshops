@@ -231,6 +231,17 @@
     margin: 0;
   }
 
+  /* ---------- Week heading, non-collapsible pages ----------
+     Same visual break as .week-collapsible > summary, without the
+     toggle — used on the facilitator guide, where every week's
+     content is always visible (no expand/collapse). */
+  .week-title-wrap{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
   /* ---------- Collapsible week sections ----------
      Each week's full detail is collapsed behind its title by default,
      so the page loads short - click the title to expand. Print/Export
