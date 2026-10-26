@@ -235,9 +235,14 @@
      Same visual break as .week-collapsible > summary, without the
      toggle — used on the facilitator guide, where every week's
      content is always visible (no expand/collapse). */
-  .figure{ margin: 20px 0 24px; }
+  .figure{ margin: 16px 0 20px; }
   .figure .duotone{ width: 100%; aspect-ratio: 1400 / 932; border-radius: 12px; }
   .figure figcaption{ font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+  /* On wider screens the photo sits beside the text instead of spanning it. */
+  @media (min-width: 720px){
+    .figure{ float: right; width: 40%; max-width: 340px; margin: 4px 0 14px 28px; }
+    .figure ~ h3, .figure ~ .timeline{ clear: both; }
+  }
 
   .week-title-wrap{
     display: flex;
